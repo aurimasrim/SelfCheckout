@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Mokejimo_kortele">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +14,7 @@
           <Property Name="Bankas" Type="nchar" MaxLength="10" />
           <Property Name="Slaptažodžio_salt" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Slaptažodžio_hash" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="likutis" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Nuolaidu_kortele">
           <Key>
@@ -125,8 +126,7 @@
             <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -140,6 +140,7 @@
           <Property Name="Slaptažodžio_salt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Slaptažodžio_hash" Type="String" MaxLength="64" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pirkimas" Relationship="Self.FK__Pirkimas__Mokeji__3A81B327" FromRole="Mokejimo_kortele" ToRole="Pirkimas" />
+          <Property Name="Likutis" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Nuolaidu_kortele">
           <Key>
@@ -235,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShopDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ShopDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Mokejimo_kortele" EntityType="Self.Mokejimo_kortele" />
           <EntitySet Name="Nuolaidu_kortele" EntityType="Self.Nuolaidu_kortele" />
           <EntitySet Name="Pirkimas" EntityType="Self.Pirkimas" />
@@ -263,10 +264,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ShopDBModelStoreContainer" CdmEntityContainer="ShopDBEntities">
+        <EntityContainerMapping StorageEntityContainer="ShopDBModelStoreContainer" CdmEntityContainer="ShopDBEntities1">
           <EntitySetMapping Name="Mokejimo_kortele">
             <EntityTypeMapping TypeName="ShopDBModel.Mokejimo_kortele">
               <MappingFragment StoreEntitySet="Mokejimo_kortele">
+                <ScalarProperty Name="Likutis" ColumnName="likutis" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Tipas" ColumnName="Tipas" />
                 <ScalarProperty Name="Bankas" ColumnName="Bankas" />

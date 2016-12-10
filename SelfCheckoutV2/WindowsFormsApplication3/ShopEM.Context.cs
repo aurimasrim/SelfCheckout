@@ -13,10 +13,10 @@ namespace WindowsFormsApplication3
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ShopDBEntities : DbContext
+    public partial class ShopDBEntities1 : DbContext
     {
-        public ShopDBEntities()
-            : base("name=ShopDBEntities")
+        public ShopDBEntities1()
+            : base("name=ShopDBEntities1")
         {
         }
     

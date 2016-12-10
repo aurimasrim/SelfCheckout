@@ -25,6 +25,7 @@ namespace WindowsFormsApplication3
         public string Bankas { get; set; }
         public string Slaptažodžio_salt { get; set; }
         public string Slaptažodžio_hash { get; set; }
+        public double Likutis { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pirkimas> Pirkimas { get; set; }
