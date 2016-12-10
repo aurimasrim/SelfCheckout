@@ -1,0 +1,18 @@
+
+    Tingus inicializavimas (0,1).										0.1
+    Generics:
+        delegatuose arba ávykiuose (0,05),									0.05
+        metoduose (0,05).											0.05
+    Delegatai (0,1).												0.1
+    Ávykiai ir jø apdorojimas: standartiniai (0,05) ir paèiø sukurti (0,15).					0.2
+    Iðimtys ir jø apdorojimas: standartinës (0,1) ir sukurtos iðimtys (0,1), jø prasmingas apdorojimas.		0.2
+    Variacijos (0,05) ir kovariacijos (0,05) panaudojimas.	
+    Trys anoniminiai metodai sukûrimas (0,15).									0.05
+    Trys lambda iðraiðkos (0,15).										0.15
+    Lygiagretaus programavimo panaudojimas:
+        Threading arba async/await (naudojant paèiø apraðytoms klasëms) (0,2),					0.2
+        Bendro resurso gijose/uþduotyse naudojimas su reikiamomis apsaugomis (0,1).				0.1
+    Prasmingas skirtingø (app (0,05) ir user (0,05)) konfigûraciniø failø panaudojimas.				0.05
+    Prasmingai pademonstruoti Dependency Injection (0,3).							0.3
+									
+													Viso:	1.55

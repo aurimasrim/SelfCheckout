@@ -1,0 +1,14 @@
+Alus "Ðvyturio ekstra"/1234567890123/300/0,79/6
+Spirituotas vyno gërimas "Monikutës naktys"/12345678/250/1,30/6
+Vynas "Alita"/2234567890123/250/1,30/4
+Alus "Ðvyturio ekstra"/1234567890123/300/0,79/6
+Balzamas "Þalios devynerios"/22345678/700/6,79/4
+Gaivusis gërimas "Sprite"/32345678/800/1,45/3
+Brendis "Stock 84" 0,7/42345678/800/7,69/4
+Gaivusis gërimas "Pepsi" 1/4234567890123/1200/0,50/3
+Ðiukðliø maiðai/52345678/198/2
+Pienas "Piemenëlis"/5234567890123/1100/0,79/32
+Obuolys/62345678/75/0,25/8
+Morka/6234567890123/50/0,3/16
+Sûris "Dþiugas"/72345678/300/1,49/32
+Kriauðë/7234567890123/75/0,25/8
