@@ -36,6 +36,7 @@ namespace WindowsFormsApplication3
         public CustomArray<Product> Productsdatabase { get; set; }
         public CustomArray<Product> Scannedproductsarray { get; set; }
         private Lazy<CreditCardArray> creditCardsArray;
+        public DataSet CreditCardsDataSet = new DataSet();
         //private CustomArray<CreditCard> creditCardsArray;
 
         private int scannedProductsWeight;
@@ -208,11 +209,11 @@ namespace WindowsFormsApplication3
                 {
                     foreach (CreditCard item in creditCardsArray.Value)
                     {
-                        if (cardNumber == item.Number)
-                        {
-                            payingCard = item;
-                            return 1;
-                        }
+                        //if (cardNumber == item.Number)
+                        //{
+                        //    payingCard = item;
+                        //    return 1;
+                        //}
                     }
                     return 0;
                 }
@@ -366,42 +367,44 @@ namespace WindowsFormsApplication3
                 else return false;
             }
         }
-        public void addCreditCardToDatabase(CreditCard product)
+        public void addCreditCardToDatabase(CreditCard card)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                context.Mokejimo_kortele.Add(new Mokejimo_kortele() {
+                    Id = card.Number,
+                    Bankas = card.BankName,
+                    Tipas = card.Type,
+                    Slaptažodžio_hash = card.PasswordHash,
+                    Slaptažodžio_salt = card.PasswordSalt,
+                    Likutis = card.Balance
+                });
+                context.ChangeTracker.DetectChanges();
+                context.SaveChanges();
+            }
+        }
+        public void removeCreditCardFromDatabase(int id)
         {
             using (SqlConnection cn = new SqlConnection(connectionString))
-            using (SqlCommand insert = cn.CreateCommand())
+            using (SqlCommand delete = cn.CreateCommand())
             {
                 cn.Open();
 
-                insert.Connection = cn;
-                insert.CommandType = CommandType.Text;
-                insert.CommandText = "INSERT INTO MokejimoKortele (Id, Tipas, Bankas, Slaptažodžio_salt, Slaptažodžio_hash, Likutis) VALUES (@Bar, @Pav, @Kai, @Svo, @Kat, @Atr)";
+                delete.Connection = cn;
+                delete.CommandType = CommandType.Text;
+                delete.CommandText = "DELETE FROM Preke WHERE Barkodas = @Bar";
 
-                insert.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas"));
-                insert.Parameters.Add(new SqlParameter("@Pav", SqlDbType.VarChar, 50, "Pavadinimas"));
-                insert.Parameters.Add(new SqlParameter("@Kai", SqlDbType.Float, 10, "Kaina"));
-                insert.Parameters.Add(new SqlParameter("@Svo", SqlDbType.Int, 10, "Svoris"));
-                insert.Parameters.Add(new SqlParameter("@Kat", SqlDbType.Int, 10, "Kategorija"));
-                insert.Parameters.Add(new SqlParameter("@Atr", SqlDbType.Int, 10, "Atributai"));
+                delete.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas")).Value = barcode;
 
-                SqlDataAdapter da = new SqlDataAdapter("SELECT Barkodas, Pavadinimas, Kaina, Svoris, Kategorija, Atributai FROM Preke", cn);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Preke", cn);
                 DataSet ds = new DataSet();
 
                 da.Fill(ds, "Preke");
 
-                da.InsertCommand = insert;
+                da.DeleteCommand = delete;
+                da.DeleteCommand.ExecuteNonQuery();
 
-
-                DataRow newRow = ds.Tables[0].NewRow();
-                newRow["Barkodas"] = product.Barcode;
-                newRow["Pavadinimas"] = product.Pname;
-                newRow["Kaina"] = product.Price;
-                newRow["Svoris"] = product.Weight;
-                newRow["Kategorija"] = (int)product.Pcategory;
-                newRow["Atributai"] = (int)product.Pattributes;
-
-                ds.Tables[0].Rows.Add(newRow);
-                da.Update(ds.Tables[0]);
+                //da.Update(ds.Tables[0]);
                 da.Dispose();
             }
         }

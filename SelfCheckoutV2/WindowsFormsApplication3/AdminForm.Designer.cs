@@ -396,6 +396,7 @@
             this.buttonCreditCards.Size = new System.Drawing.Size(102, 35);
             this.buttonCreditCards.TabIndex = 42;
             this.buttonCreditCards.Text = "Mokėjimo kortelės";
+            this.buttonCreditCards.Click += new System.EventHandler(this.buttonCreditCards_Click);
             // 
             // AdminForm
             // 

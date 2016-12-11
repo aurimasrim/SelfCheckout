@@ -41,14 +41,7 @@ namespace WindowsFormsApplication3
         {
             textBoxBalance.Text = Barcode;
             
-            checkBoxPaidTare.Tag = Attributes.PaidTare;
-            checkBoxAlcohol.Tag = Attributes.Alcohol;
-
-            checkBoxPaidTare.CheckedChanged += enumCheckedChanged;
-            checkBoxAlcohol.CheckedChanged += enumCheckedChanged;
-
-            comboCategories.DataSource = Enum.GetNames(typeof(Category));
-            comboCategories.SelectedIndex = 0;
+            
         }
         private void enumCheckedChanged (object sender, EventArgs args)
         {
@@ -59,9 +52,8 @@ namespace WindowsFormsApplication3
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            f1.cm.addProductToDatabase(new Product(textId.Text, textBoxBalance.Text, int.Parse(textBoxBank.Text), float.Parse(textType.Text), (Category)comboCategories.SelectedIndex, attributes));
-
-            f3.GetData();
+            f1.cm.addCreditCardToDatabase(new CreditCard(int.Parse(textBoxId.Text), textBoxType.Text, textBoxBank.Text, "hashh", "sallltt", double.Parse(textBoxBalance.Text)));
+            f3.ccf.GetData();
             this.Close();
         }
 
@@ -72,7 +64,7 @@ namespace WindowsFormsApplication3
 
         private void textBoxBarcode_Validating(object sender, CancelEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxBalance.Text, @"^\d{8}$|^\d{13}$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxBalance.Text, @"^\d+(,\d+)?$"))
             {
                 e.Cancel = true;
                 textBoxBalance.BackColor = Color.Red;
@@ -85,7 +77,7 @@ namespace WindowsFormsApplication3
 
         private void textBoxWeight_Validating(object sender, CancelEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxBank.Text, @"^\d+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxBank.Text, @"^.+$"))
             {
                 e.Cancel = true;
                 textBoxBank.BackColor = Color.Red;
@@ -99,30 +91,30 @@ namespace WindowsFormsApplication3
 
         private void textBoxPrice_Validating(object sender, CancelEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(textType.Text, @"^\d+(,\d)?\d?$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxType.Text, @"^.+$"))
             {
                 e.Cancel = true;
-                textType.BackColor = Color.Red;
+                textBoxType.BackColor = Color.Red;
             }
         }
 
         private void textBoxPrice_Validated(object sender, EventArgs e)
         {
-            textType.BackColor = Color.LightBlue;
+            textBoxType.BackColor = Color.LightBlue;
         }
 
         private void textBoxName_Validating(object sender, CancelEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(textId.Text, @"^.+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxId.Text, @"^\d+$"))
             {
                 e.Cancel = true;
-                textId.BackColor = Color.Red;
+                textBoxId.BackColor = Color.Red;
             }
         }
 
         private void textBoxName_Validated(object sender, EventArgs e)
         {
-            textId.BackColor = Color.LightBlue;
+            textBoxId.BackColor = Color.LightBlue;
         }
     }
 }

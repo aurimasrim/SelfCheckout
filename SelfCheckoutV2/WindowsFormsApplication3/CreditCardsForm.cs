@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,40 +24,6 @@ namespace WindowsFormsApplication3
             this.f3 = f3;
             InitializeComponent();
         }
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(() =>
-            {
-                Monitor.Enter(f1.cm.Productsdatabase);
-                try
-                {
-                    f1.cm.readFromInternet(textBoxAddress.Text);
-                    f3.GetData();
-                    //f2.ResetBindings(true);
-                    //f3.ResetBindings(true);
-                }
-                catch (System.Net.WebException)
-                {
-                    MessageBoxForm.Show("Blogas adreso formatas");
-                }
-                
-                catch (Exception)
-                {
-                    MessageBoxForm.Show("Blogas adreso formatas");
-                }
-                finally
-                {
-                    Monitor.Exit(f1.cm.Productsdatabase);
-                    this.Invoke((MethodInvoker)delegate () {this.Close(); }); ;
-                }
-
-
-                //thread.Join();
-
-            });
-            thread.Start();
-            
-        }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -68,6 +35,38 @@ namespace WindowsFormsApplication3
             // TODO: This line of code loads data into the 'shopDBDataSet.Mokejimo_kortele' table. You can move, or remove it, as needed.
             this.mokejimo_korteleTableAdapter.Fill(this.shopDBDataSet.Mokejimo_kortele);
 
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            AddCreditCardForm accf = new AddCreditCardForm(f1, f2, f3);
+            accf.ShowDialog();
+        }
+        public void GetData()
+        {
+            using (SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aurimas\Documents\GitHub\SelfCheckout\SelfCheckoutV2\WindowsFormsApplication3\ShopDB.mdf;Integrated Security=True"))
+            {
+                cn.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Mokejimo_kortele", cn);
+                DataTable dt = new DataTable();
+                dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                da.Fill(dt);
+                mokejimokorteleBindingSource.DataSource = dt;
+                da.Dispose();
+                //gridProducts.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader);
+            }
+        }
+
+        private void gridCards_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridCards.Columns[e.ColumnIndex].Name == "remove")
+            {
+                f1.cm.removeProductFromDatabase(gridProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
+                df.Show();
+                //this.ResetBindings(true);
+                //f2.ResetBindings(true);
+            }
         }
     }
 }

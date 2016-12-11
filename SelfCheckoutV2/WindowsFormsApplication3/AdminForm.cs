@@ -21,6 +21,7 @@ namespace WindowsFormsApplication3
         CheckoutForm f1;
         ClientForm f2;
         CameraScanForm csf;
+        public CreditCardsForm ccf;
         public AdminForm(CheckoutForm f1, ClientForm f2)
         {
             InitializeComponent();
@@ -215,6 +216,12 @@ namespace WindowsFormsApplication3
                 da.Dispose();
                 gridProducts.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader);
             }
+        }
+
+        private void buttonCreditCards_Click(object sender, EventArgs e)
+        {
+            ccf = new CreditCardsForm(f1, f2, this);
+            ccf.ShowDialog();
         }
     }
 }

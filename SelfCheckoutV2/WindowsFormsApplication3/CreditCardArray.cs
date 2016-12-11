@@ -23,11 +23,11 @@ namespace WindowsFormsApplication3
                 {
                     char splitter = '/';
                     string[] splittedLine = line.Split(splitter);
-                    CreditCard card = new CreditCard(splittedLine[0], splittedLine[1], splittedLine[2], splittedLine[3], splittedLine[4], double.Parse(splittedLine[2]));
-                    if (!this.Contains(card))
-                    {
-                        this.Add(card);
-                    }
+                    //CreditCard card = new CreditCard(splittedLine[0], splittedLine[1], splittedLine[2], splittedLine[3], splittedLine[4], double.Parse(splittedLine[2]));
+                    //if (!this.Contains(card))
+                    //{
+                    //    this.Add(card);
+                    //}
                 }
                 else throw new IOException();
             }

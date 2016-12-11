@@ -34,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonAdd = new EnhancedGlassButton.GlassButton();
             this.buttonCancel = new EnhancedGlassButton.GlassButton();
-            this.gridProducts = new System.Windows.Forms.DataGridView();
+            this.gridCards = new System.Windows.Forms.DataGridView();
             this.mokejimokorteleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.shopDBDataSet = new WindowsFormsApplication3.ShopDBDataSet();
             this.mokejimo_korteleTableAdapter = new WindowsFormsApplication3.ShopDBDataSetTableAdapters.Mokejimo_korteleTableAdapter();
@@ -44,8 +44,8 @@
             this.slaptažodžiosaltDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.slaptažodžiohashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.likutisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.removeProduct = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).BeginInit();
+            this.remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mokejimokorteleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopDBDataSet)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +73,7 @@
             this.buttonAdd.Size = new System.Drawing.Size(89, 35);
             this.buttonAdd.TabIndex = 28;
             this.buttonAdd.Text = "Pridėti naują";
-            this.buttonAdd.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonCancel
             // 
@@ -89,17 +89,18 @@
             this.buttonCancel.Text = "Atgal";
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // gridProducts
+            // gridCards
             // 
-            this.gridProducts.AllowUserToAddRows = false;
-            this.gridProducts.AllowUserToDeleteRows = false;
-            this.gridProducts.AllowUserToResizeColumns = false;
-            this.gridProducts.AllowUserToResizeRows = false;
-            this.gridProducts.AutoGenerateColumns = false;
-            this.gridProducts.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gridProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.gridProducts.CausesValidation = false;
-            this.gridProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridCards.AllowUserToAddRows = false;
+            this.gridCards.AllowUserToDeleteRows = false;
+            this.gridCards.AllowUserToResizeColumns = false;
+            this.gridCards.AllowUserToResizeRows = false;
+            this.gridCards.AutoGenerateColumns = false;
+            this.gridCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridCards.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gridCards.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.gridCards.CausesValidation = false;
+            this.gridCards.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.PowderBlue;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
@@ -107,34 +108,35 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gridCards.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridCards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.tipasDataGridViewTextBoxColumn,
             this.bankasDataGridViewTextBoxColumn,
             this.slaptažodžiosaltDataGridViewTextBoxColumn,
             this.slaptažodžiohashDataGridViewTextBoxColumn,
             this.likutisDataGridViewTextBoxColumn,
-            this.removeProduct});
-            this.gridProducts.DataSource = this.mokejimokorteleBindingSource;
-            this.gridProducts.EnableHeadersVisualStyles = false;
-            this.gridProducts.GridColor = System.Drawing.Color.DarkCyan;
-            this.gridProducts.Location = new System.Drawing.Point(15, 29);
-            this.gridProducts.Name = "gridProducts";
-            this.gridProducts.ReadOnly = true;
-            this.gridProducts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.gridProducts.RowHeadersVisible = false;
+            this.remove});
+            this.gridCards.DataSource = this.mokejimokorteleBindingSource;
+            this.gridCards.EnableHeadersVisualStyles = false;
+            this.gridCards.GridColor = System.Drawing.Color.DarkCyan;
+            this.gridCards.Location = new System.Drawing.Point(15, 29);
+            this.gridCards.Name = "gridCards";
+            this.gridCards.ReadOnly = true;
+            this.gridCards.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridCards.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.gridProducts.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridProducts.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gridProducts.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.gridProducts.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-            this.gridProducts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.gridProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridProducts.Size = new System.Drawing.Size(377, 144);
-            this.gridProducts.TabIndex = 32;
+            this.gridCards.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridCards.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gridCards.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.gridCards.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.gridCards.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.gridCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridCards.Size = new System.Drawing.Size(377, 144);
+            this.gridCards.TabIndex = 32;
+            this.gridCards.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCards_CellContentClick);
             // 
             // mokejimokorteleBindingSource
             // 
@@ -192,16 +194,15 @@
             this.likutisDataGridViewTextBoxColumn.Name = "likutisDataGridViewTextBoxColumn";
             this.likutisDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // removeProduct
+            // remove
             // 
-            this.removeProduct.HeaderText = "Pašalinti";
-            this.removeProduct.Name = "removeProduct";
-            this.removeProduct.ReadOnly = true;
-            this.removeProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.removeProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.removeProduct.Text = "Pašalinti";
-            this.removeProduct.UseColumnTextForButtonValue = true;
-            this.removeProduct.Width = 60;
+            this.remove.HeaderText = "Pašalinti";
+            this.remove.Name = "remove";
+            this.remove.ReadOnly = true;
+            this.remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.remove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remove.Text = "Pašalinti";
+            this.remove.UseColumnTextForButtonValue = true;
             // 
             // CreditCardsForm
             // 
@@ -211,7 +212,7 @@
             this.BackgroundImage = global::WindowsFormsApplication3.Properties.Resources.mosaic_background_1;
             this.ClientSize = new System.Drawing.Size(414, 274);
             this.ControlBox = false;
-            this.Controls.Add(this.gridProducts);
+            this.Controls.Add(this.gridCards);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.label1);
@@ -219,7 +220,7 @@
             this.Name = "CreditCardsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.CreditCardsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mokejimokorteleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopDBDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -231,16 +232,16 @@
         private System.Windows.Forms.Label label1;
         private EnhancedGlassButton.GlassButton buttonAdd;
         private EnhancedGlassButton.GlassButton buttonCancel;
-        public System.Windows.Forms.DataGridView gridProducts;
+        public System.Windows.Forms.DataGridView gridCards;
         private ShopDBDataSet shopDBDataSet;
         private System.Windows.Forms.BindingSource mokejimokorteleBindingSource;
-        private ShopDBDataSetTableAdapters.Mokejimo_korteleTableAdapter mokejimo_korteleTableAdapter;
+        public ShopDBDataSetTableAdapters.Mokejimo_korteleTableAdapter mokejimo_korteleTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn slaptažodžiosaltDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn slaptažodžiohashDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn likutisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn removeProduct;
+        private System.Windows.Forms.DataGridViewButtonColumn remove;
     }
 }

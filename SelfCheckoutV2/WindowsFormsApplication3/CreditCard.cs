@@ -8,30 +8,30 @@ namespace WindowsFormsApplication3
 {
     class CreditCard
     {
-        public string Number { get; }
-        private string type;
-        private string bankName;
-        private string passwordHash;
-        private string passwordSalt;
-        private double balance;
+        public int Number { get; }
+        public string Type { get; }
+        public string BankName { get; }
+        public string PasswordHash { get; }
+        public string PasswordSalt { get; }
+        public double balance;
         
         public double Balance
         {
             get { return balance; }
         }
-        public CreditCard(string number, string type, string bankName, string passwordHash, string passwordSalt, double balance)
+        public CreditCard(int number, string type, string bankName, string passwordHash, string passwordSalt, double balance)
         {
             this.Number = number;
-            this.type = type;
-            this.bankName = bankName;
-            this.passwordHash = passwordHash;
-            this.passwordSalt = passwordSalt;
+            this.Type = type;
+            this.BankName = bankName;
+            this.PasswordHash = passwordHash;
+            this.PasswordSalt = passwordSalt;
             this.balance = balance;
         }
 
         public bool passwordEquals(string passwordHash)
         {
-            if (this.passwordHash == passwordHash) return true;
+            if (this.PasswordHash == passwordHash) return true;
             else return false;
         }
         public bool chargeBalance(double price)
