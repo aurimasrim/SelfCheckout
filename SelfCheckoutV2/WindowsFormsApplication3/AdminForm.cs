@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace WindowsFormsApplication3
             InitializeComponent();
             this.f1 = f1;
             this.f2 = f2;
-            productBindingSource.DataSource = f1.cm.Productsdatabase.Array;
+            
 
             buttonClose.Click += delegate (object sender, EventArgs e)
             {
@@ -34,7 +35,7 @@ namespace WindowsFormsApplication3
             // 2 skaičiai po kablelio
             gridProducts.Columns[1].DefaultCellStyle.Format = "N2";
 
-            //comboCategories.DataSource = Enum.GetNames(typeof(Attributes));
+            comboCategories.DataSource = Enum.GetNames(typeof(Category));
             comboCategories.SelectedIndex = 0;
         }
         private void buttonReadFile_Click(object sender, EventArgs e)
@@ -46,8 +47,8 @@ namespace WindowsFormsApplication3
                 try
                 {
                     f1.cm.readProductData(path);
-                    this.ResetBindings(true);
-                    f2.ResetBindings(true);
+                    //this.ResetBindings(true);
+                    //f2.ResetBindings(true);
                 }
                 catch (IOException)
                 {
@@ -112,15 +113,6 @@ namespace WindowsFormsApplication3
         {
             f1.approveAge();
         }
-        public void ResetBindings(bool value)
-        {
-            if (InvokeRequired)
-            {
-                Action <bool> resetBindingsCallBack = new Action <bool> (ResetBindings);
-                this.Invoke(resetBindingsCallBack, value);
-            }
-            else productBindingSource.ResetBindings(true);
-        }
 
         private void gridProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -128,22 +120,23 @@ namespace WindowsFormsApplication3
             {
                 DiscountForm df = new DiscountForm(f1,f2, this, e.RowIndex);
                 df.Show();
-                this.ResetBindings(true);
-                f2.ResetBindings(true);
+                //this.ResetBindings(true);
+                //f2.ResetBindings(true);
             }
             else if (gridProducts.Columns[e.ColumnIndex].Name == "removeProduct")
             {
-                f1.cm.Productsdatabase.Remove(e.RowIndex);
-                this.ResetBindings(true);
-                f2.ResetBindings(true);
+                f1.cm.removeProductFromDatabase(gridProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
+                GetData();
+                //this.ResetBindings(true);
+                //f2.ResetBindings(true);
             }
         }
 
         private void buttonSort_Click(object sender, EventArgs e)
         {
             f1.cm.Productsdatabase.Sort();
-            this.ResetBindings(true);
-            f2.ResetBindings(true);
+            //this.ResetBindings(true);
+            //f2.ResetBindings(true);
         }
 
         private void buttonDiscount_Click(object sender, EventArgs e)
@@ -157,15 +150,6 @@ namespace WindowsFormsApplication3
                 case 1:
                     category = Attributes.Drink;
                     break;
-                case 2:
-                    category = Attributes.Fruit;
-                    break;
-                case 3:
-                    category = Attributes.Vegetable;
-                    break;
-                case 4:
-                    category = Attributes.Dairy;
-                    break;
             }
             
             for(int i = 0; i < f1.cm.Productsdatabase.getSize(); i++)
@@ -177,8 +161,8 @@ namespace WindowsFormsApplication3
                 }
             
             }
-            this.ResetBindings(true);
-            f2.ResetBindings(true);
+            //this.ResetBindings(true);
+            //f2.ResetBindings(true);
         }
         private void textBoxDiscount_Validating(object sender, CancelEventArgs e)
         {
@@ -204,6 +188,33 @@ namespace WindowsFormsApplication3
         {
             AddProductForm adf = new AddProductForm(f1, f2, this);
             adf.ShowDialog();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'prekeDataSet.Preke' table. You can move, or remove it, as needed.
+            //this.prekeTableAdapter.Fill(this.prekeDataSet.Preke);
+            this.GetData();
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+        public void GetData()
+        {
+            using (SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aurimas\Documents\GitHub\SelfCheckout\SelfCheckoutV2\WindowsFormsApplication3\ShopDB.mdf;Integrated Security=True"))
+            {
+                cn.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT Barkodas, Pavadinimas, Kaina, Svoris, Kategorija, Atributai FROM Preke", cn);
+                DataTable dt = new DataTable();
+                dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                da.Fill(dt);
+                prekeBindingSource.DataSource = dt;
+                da.Dispose();
+                gridProducts.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader);
+            }
         }
     }
 }

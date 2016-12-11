@@ -8,6 +8,6 @@ namespace WindowsFormsApplication3
 {
     interface DataReader
     {
-        void ReadData <T>(CustomArray <T> dataArray, string path);
+        void ReadData(CheckoutMachine cm, string path);
     }
 }

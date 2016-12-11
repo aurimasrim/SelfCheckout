@@ -20,12 +20,12 @@ namespace WindowsFormsApplication3
             this.Pirkimo_prekes = new HashSet<Pirkimo_prekes>();
         }
     
-        public int Barkodas { get; set; }
+        public string Barkodas { get; set; }
         public string Pavadinimas { get; set; }
         public double Kaina { get; set; }
-        public string Svoris { get; set; }
-        public string Kategorija { get; set; }
-        public Nullable<int> Atributai { get; set; }
+        public int Svoris { get; set; }
+        public int Kategorija { get; set; }
+        public int Atributai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pirkimo_prekes> Pirkimo_prekes { get; set; }

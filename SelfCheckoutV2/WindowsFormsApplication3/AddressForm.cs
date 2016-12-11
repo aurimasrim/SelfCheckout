@@ -31,8 +31,9 @@ namespace WindowsFormsApplication3
                 try
                 {
                     f1.cm.readFromInternet(textBoxAddress.Text);
-                    f2.ResetBindings(true);
-                    f3.ResetBindings(true);
+                    f3.GetData();
+                    //f2.ResetBindings(true);
+                    //f3.ResetBindings(true);
                 }
                 catch (System.Net.WebException)
                 {
@@ -46,7 +47,7 @@ namespace WindowsFormsApplication3
                 finally
                 {
                     Monitor.Exit(f1.cm.Productsdatabase);
-                    this.Close();
+                    this.Invoke((MethodInvoker)delegate () {this.Close(); }); ;
                 }
 
 

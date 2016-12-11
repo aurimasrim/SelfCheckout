@@ -27,8 +27,8 @@ namespace WindowsFormsApplication3
         private void buttonOk_Click(object sender, EventArgs e)
         {
             f1.cm.Productsdatabase.Replace(af.gridProducts.CurrentCell.RowIndex, (Product)f1.cm.Productsdatabase[af.gridProducts.CurrentCell.RowIndex].CloneWithDiscount(int.Parse(textBoxDiscount.Text)));
-            af.ResetBindings(true);
-            f2.ResetBindings(true);
+            //af.ResetBindings(true);
+            //f2.ResetBindings(true);
             this.Close();
         }
         private void textBoxDiscount_Validating(object sender, CancelEventArgs e)

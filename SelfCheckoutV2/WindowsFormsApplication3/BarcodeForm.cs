@@ -20,7 +20,7 @@ namespace WindowsFormsApplication3
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            //f1.scan(textBoxBarcode.Text);
+            f1.testingWindow.OnProductScan(this, new ProductScanEventArgs(textBoxBarcode.Text));
             this.Close();
         }
         private void textBoxBarcode_Validating(object sender, CancelEventArgs e)

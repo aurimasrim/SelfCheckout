@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApplication3
 {
@@ -40,19 +41,14 @@ namespace WindowsFormsApplication3
         {
             textBoxBarcode.Text = Barcode;
             
-            checkBoxDrink.Tag = Attributes.Drink;
             checkBoxPaidTare.Tag = Attributes.PaidTare;
             checkBoxAlcohol.Tag = Attributes.Alcohol;
-            checkBoxFruit.Tag = Attributes.Fruit;
-            checkBoxVegetable.Tag = Attributes.Vegetable;
-            checkBoxDairy.Tag = Attributes.Dairy;
 
-            checkBoxDrink.CheckedChanged += enumCheckedChanged;
             checkBoxPaidTare.CheckedChanged += enumCheckedChanged;
             checkBoxAlcohol.CheckedChanged += enumCheckedChanged;
-            checkBoxFruit.CheckedChanged += enumCheckedChanged;
-            checkBoxVegetable.CheckedChanged += enumCheckedChanged;
-            checkBoxDairy.CheckedChanged += enumCheckedChanged;
+
+            comboCategories.DataSource = Enum.GetNames(typeof(Category));
+            comboCategories.SelectedIndex = 0;
         }
         private void enumCheckedChanged (object sender, EventArgs args)
         {
@@ -63,9 +59,9 @@ namespace WindowsFormsApplication3
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            f1.cm.Productsdatabase.Add(new Product(textBoxName.Text, textBoxBarcode.Text, int.Parse(textBoxWeight.Text), float.Parse(textBoxPrice.Text), attributes));
-            f2.ResetBindings(true);
-            f3.ResetBindings(true);
+            f1.cm.addProductToDatabase(new Product(textBoxName.Text, textBoxBarcode.Text, int.Parse(textBoxWeight.Text), float.Parse(textBoxPrice.Text), (Category)comboCategories.SelectedIndex, attributes));
+
+            f3.GetData();
             this.Close();
         }
 

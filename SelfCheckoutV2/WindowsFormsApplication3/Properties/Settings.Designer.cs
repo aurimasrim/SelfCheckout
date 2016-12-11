@@ -33,5 +33,16 @@ namespace WindowsFormsApplication3.Properties {
                 return ((string)(this["creditCardDataConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ShopDB.mdf;In" +
+            "tegrated Security=True")]
+        public string ProductConnectionString {
+            get {
+                return ((string)(this["ProductConnectionString"]));
+            }
+        }
     }
 }

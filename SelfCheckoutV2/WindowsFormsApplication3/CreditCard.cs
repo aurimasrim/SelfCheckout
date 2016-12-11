@@ -29,9 +29,9 @@ namespace WindowsFormsApplication3
             this.balance = balance;
         }
 
-        public bool passwordEquals(string password)
+        public bool passwordEquals(string passwordHash)
         {
-            if (this.password == password) return true;
+            if (this.passwordHash == passwordHash) return true;
             else return false;
         }
         public bool chargeBalance(double price)

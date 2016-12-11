@@ -25,7 +25,7 @@ namespace WindowsFormsApplication3
         private SoundPlayer coin = new SoundPlayer(String.Concat(Directory.GetCurrentDirectory(), @"\smw_coin.wav"));
         public CheckoutMachine cm = new CheckoutMachine();
         public PayForm payWindow;
-        ClientForm testingWindow;
+        public ClientForm testingWindow;
         public AdminForm adminWindow;
         HelpForm helpForm;
         public CheckoutForm()
@@ -199,7 +199,7 @@ namespace WindowsFormsApplication3
         // Uždarant programą
         private void CheckoutForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if ((cm.cardPath != null)&&(!cm.isCardArrayEmpty())) cm.writeCardData(cm.cardPath);
+            //if ((cm.cardPath != null)&&(!cm.isCardArrayEmpty())) cm.writeCardData(cm.cardPath);
         }
 
         private void CheckoutForm_MouseDown(object sender, MouseEventArgs e)

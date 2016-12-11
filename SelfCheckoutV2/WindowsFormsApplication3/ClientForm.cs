@@ -77,7 +77,7 @@ namespace WindowsFormsApplication3
                     {
                         //MessageBoxForm.Show(f1.cm.Productsdatabase.Array[e.RowIndex].Barcode);
                         //string bar = f1.cm.Productsdatabase.Array[e.RowIndex].Barcode;
-                        ProductScan(this, new ProductScanEventArgs(f1.cm.Productsdatabase.Array[e.RowIndex].Barcode));
+                        ProductScan(this, new ProductScanEventArgs(gridProducts.Rows[e.RowIndex].Cells[0].Value.ToString()));
                         
                         //f1.scan(f1.cm.Productsdatabase.Array[e.RowIndex].Barcode);
                         gridProducts.ClearSelection();
@@ -105,7 +105,7 @@ namespace WindowsFormsApplication3
                     //f1.weigh(f1.cm.Productsdatabase.Array[e.RowIndex].Weight);
                     try
                     {
-                        ProductWeigh(this, new ProductWeighEventArgs(f1.cm.Productsdatabase.Array[e.RowIndex].Weight));
+                        ProductWeigh(this, new ProductWeighEventArgs((int)gridProducts.Rows[e.RowIndex].Cells[3].Value));
                     }
                     catch (WeightEqualityException)
                     {
@@ -219,6 +219,13 @@ namespace WindowsFormsApplication3
         private void timer1_Tick(object sender, EventArgs e)
         {
             productBindingSource.ResetBindings(false);
+        }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'prekeDataSet.Preke' table. You can move, or remove it, as needed.
+            //this.prekeTableAdapter.Fill(this.prekeDataSet.Preke);
+            this.gridProducts.DataSource = f1.adminWindow.gridProducts.DataSource;
         }
     }
 }

@@ -40,7 +40,7 @@
             <PropertyRef Name="Preke" />
             <PropertyRef Name="Pirkimas" />
           </Key>
-          <Property Name="Preke" Type="int" Nullable="false" />
+          <Property Name="Preke" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Pirkimas" Type="int" Nullable="false" />
           <Property Name="Kiekis" Type="int" Nullable="false" />
         </EntityType>
@@ -48,12 +48,12 @@
           <Key>
             <PropertyRef Name="Barkodas" />
           </Key>
-          <Property Name="Barkodas" Type="int" Nullable="false" />
+          <Property Name="Barkodas" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Pavadinimas" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Kaina" Type="float" Nullable="false" />
-          <Property Name="Svoris" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Kategorija" Type="varchar" MaxLength="50" />
-          <Property Name="Atributai" Type="int" />
+          <Property Name="Svoris" Type="int" Nullable="false" />
+          <Property Name="Kategorija" Type="int" Nullable="false" />
+          <Property Name="Atributai" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Pirkimas__Mokeji__3A81B327">
           <End Role="Mokejimo_kortele" Type="Self.Mokejimo_kortele" Multiplicity="0..1" />
@@ -79,7 +79,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pirkimo_p__Pirki__3C69FB99">
+        <Association Name="FK__Pirkimo_p__Pirki__0B5CAFEA">
           <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="1" />
           <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,7 +91,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pirkimo_p__Preke__3B75D760">
+        <Association Name="FK__Pirkimo_p__Preke__0A688BB1">
           <End Role="Preke" Type="Self.Preke" Multiplicity="1" />
           <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,11 +117,11 @@
             <End Role="Nuolaidu_kortele" EntitySet="Nuolaidu_kortele" />
             <End Role="Pirkimas" EntitySet="Pirkimas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pirkimo_p__Pirki__3C69FB99" Association="Self.FK__Pirkimo_p__Pirki__3C69FB99">
+          <AssociationSet Name="FK__Pirkimo_p__Pirki__0B5CAFEA" Association="Self.FK__Pirkimo_p__Pirki__0B5CAFEA">
             <End Role="Pirkimas" EntitySet="Pirkimas" />
             <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pirkimo_p__Preke__3B75D760" Association="Self.FK__Pirkimo_p__Preke__3B75D760">
+          <AssociationSet Name="FK__Pirkimo_p__Preke__0A688BB1" Association="Self.FK__Pirkimo_p__Preke__0A688BB1">
             <End Role="Preke" EntitySet="Preke" />
             <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
           </AssociationSet>
@@ -170,7 +170,7 @@
             <PropertyRef Name="Preke" />
             <PropertyRef Name="Pirkimas" />
           </Key>
-          <Property Name="Preke" Type="Int32" Nullable="false" />
+          <Property Name="Preke" Type="String" Nullable="false" MaxLength="13" Unicode="false" FixedLength="false" />
           <Property Name="Pirkimas" Type="Int32" Nullable="false" />
           <Property Name="Kiekis" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pirkimas1" Relationship="Self.FK__Pirkimo_p__Pirki__3C69FB99" FromRole="Pirkimo_prekes" ToRole="Pirkimas" />
@@ -180,12 +180,12 @@
           <Key>
             <PropertyRef Name="Barkodas" />
           </Key>
-          <Property Name="Barkodas" Type="Int32" Nullable="false" />
+          <Property Name="Barkodas" Type="String" Nullable="false" MaxLength="13" Unicode="false" FixedLength="false" />
           <Property Name="Pavadinimas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Kaina" Type="Double" Nullable="false" />
-          <Property Name="Svoris" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Kategorija" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Atributai" Type="Int32" />
+          <Property Name="Svoris" Type="Int32" Nullable="false" />
+          <Property Name="Kategorija" Type="Int32" Nullable="false" />
+          <Property Name="Atributai" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pirkimo_prekes" Relationship="Self.FK__Pirkimo_p__Preke__3B75D760" FromRole="Preke" ToRole="Pirkimo_prekes" />
         </EntityType>
         <Association Name="FK__Pirkimas__Mokeji__3A81B327">

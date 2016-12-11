@@ -9,7 +9,7 @@ namespace WindowsFormsApplication3
 {
     class InternetReader : DataReader
     {
-        public void ReadData<T>(CustomArray <T> dataArray, string path)
+        public void ReadData(CheckoutMachine cm, string path)
         {
             System.Net.WebClient wc = new System.Net.WebClient();
             wc.Encoding = Encoding.UTF8;
@@ -43,15 +43,13 @@ namespace WindowsFormsApplication3
                 //MessageBox.Show(barcode.ToString());
                 for (;;)
                 {
-
                     barcode = rnd.Next(10000000, 99999999);
-                    Product pr = new Product(null, barcode.ToString(), 0, 0);
-                    if (!dataArray.Contains((T)(object)pr))
+                    if (!cm.databaseContainsProduct(barcode.ToString()))
                         break;
-
                 }
-                Product product = new Product(name, barcode.ToString(), weighti, pricef);
-                dataArray.Add((T)(object)product);
+                Product product = new Product(name, barcode.ToString(), weighti, pricef, Category.Kita);
+                cm.addProductToDatabase(product);
+                //dataArray.Add((T)(object)product);
             }
 
         }

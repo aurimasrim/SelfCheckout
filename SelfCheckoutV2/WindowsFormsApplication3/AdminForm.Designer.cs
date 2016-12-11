@@ -37,14 +37,16 @@
             this.buttonReadFile = new EnhancedGlassButton.GlassButton();
             this.buttonApprove = new EnhancedGlassButton.GlassButton();
             this.gridProducts = new System.Windows.Forms.DataGridView();
-            this.pnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pattributesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barkodasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pavadinimasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kainaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.svorisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kategorijaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atributaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.makeDiscount = new System.Windows.Forms.DataGridViewButtonColumn();
             this.removeProduct = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prekeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prekeDataSet = new WindowsFormsApplication3.PrekeDataSet();
             this.buttonSort = new EnhancedGlassButton.GlassButton();
             this.comboCategories = new System.Windows.Forms.ComboBox();
             this.textBoxDiscount = new System.Windows.Forms.TextBox();
@@ -54,8 +56,11 @@
             this.buttonDiscount = new EnhancedGlassButton.GlassButton();
             this.buttonScanWithCamera = new EnhancedGlassButton.GlassButton();
             this.buttonAddProduct = new EnhancedGlassButton.GlassButton();
+            this.prekeTableAdapter = new WindowsFormsApplication3.PrekeDataSetTableAdapters.PrekeTableAdapter();
+            this.buttonRefresh = new EnhancedGlassButton.GlassButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prekeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prekeDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -150,19 +155,19 @@
             this.gridProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.pnameDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.weightDataGridViewTextBoxColumn,
-            this.barcodeDataGridViewTextBoxColumn,
-            this.pattributesDataGridViewTextBoxColumn,
+            this.barkodasDataGridViewTextBoxColumn,
+            this.pavadinimasDataGridViewTextBoxColumn,
+            this.kainaDataGridViewTextBoxColumn,
+            this.svorisDataGridViewTextBoxColumn,
+            this.kategorijaDataGridViewTextBoxColumn,
+            this.atributaiDataGridViewTextBoxColumn,
             this.makeDiscount,
             this.removeProduct});
-            this.gridProducts.DataSource = this.productBindingSource;
+            this.gridProducts.DataSource = this.prekeBindingSource;
             this.gridProducts.EnableHeadersVisualStyles = false;
             this.gridProducts.GridColor = System.Drawing.Color.DarkCyan;
             this.gridProducts.Location = new System.Drawing.Point(24, 124);
             this.gridProducts.Name = "gridProducts";
-            this.gridProducts.ReadOnly = true;
             this.gridProducts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.gridProducts.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -177,50 +182,46 @@
             this.gridProducts.TabIndex = 31;
             this.gridProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProducts_CellContentClick);
             // 
-            // pnameDataGridViewTextBoxColumn
+            // barkodasDataGridViewTextBoxColumn
             // 
-            this.pnameDataGridViewTextBoxColumn.DataPropertyName = "Pname";
-            this.pnameDataGridViewTextBoxColumn.HeaderText = "Pavadinimas";
-            this.pnameDataGridViewTextBoxColumn.Name = "pnameDataGridViewTextBoxColumn";
-            this.pnameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pnameDataGridViewTextBoxColumn.Width = 250;
+            this.barkodasDataGridViewTextBoxColumn.DataPropertyName = "Barkodas";
+            this.barkodasDataGridViewTextBoxColumn.HeaderText = "Barkodas";
+            this.barkodasDataGridViewTextBoxColumn.Name = "barkodasDataGridViewTextBoxColumn";
             // 
-            // priceDataGridViewTextBoxColumn
+            // pavadinimasDataGridViewTextBoxColumn
             // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Kaina";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.priceDataGridViewTextBoxColumn.Width = 40;
+            this.pavadinimasDataGridViewTextBoxColumn.DataPropertyName = "Pavadinimas";
+            this.pavadinimasDataGridViewTextBoxColumn.HeaderText = "Pavadinimas";
+            this.pavadinimasDataGridViewTextBoxColumn.Name = "pavadinimasDataGridViewTextBoxColumn";
             // 
-            // weightDataGridViewTextBoxColumn
+            // kainaDataGridViewTextBoxColumn
             // 
-            this.weightDataGridViewTextBoxColumn.DataPropertyName = "Weight";
-            this.weightDataGridViewTextBoxColumn.HeaderText = "Svoris";
-            this.weightDataGridViewTextBoxColumn.Name = "weightDataGridViewTextBoxColumn";
-            this.weightDataGridViewTextBoxColumn.ReadOnly = true;
-            this.weightDataGridViewTextBoxColumn.Width = 45;
+            this.kainaDataGridViewTextBoxColumn.DataPropertyName = "Kaina";
+            this.kainaDataGridViewTextBoxColumn.HeaderText = "Kaina";
+            this.kainaDataGridViewTextBoxColumn.Name = "kainaDataGridViewTextBoxColumn";
             // 
-            // barcodeDataGridViewTextBoxColumn
+            // svorisDataGridViewTextBoxColumn
             // 
-            this.barcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode";
-            this.barcodeDataGridViewTextBoxColumn.HeaderText = "Barkodas";
-            this.barcodeDataGridViewTextBoxColumn.Name = "barcodeDataGridViewTextBoxColumn";
-            this.barcodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.barcodeDataGridViewTextBoxColumn.Width = 105;
+            this.svorisDataGridViewTextBoxColumn.DataPropertyName = "Svoris";
+            this.svorisDataGridViewTextBoxColumn.HeaderText = "Svoris";
+            this.svorisDataGridViewTextBoxColumn.Name = "svorisDataGridViewTextBoxColumn";
             // 
-            // pattributesDataGridViewTextBoxColumn
+            // kategorijaDataGridViewTextBoxColumn
             // 
-            this.pattributesDataGridViewTextBoxColumn.DataPropertyName = "Pattributes";
-            this.pattributesDataGridViewTextBoxColumn.HeaderText = "Atributai";
-            this.pattributesDataGridViewTextBoxColumn.Name = "pattributesDataGridViewTextBoxColumn";
-            this.pattributesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kategorijaDataGridViewTextBoxColumn.DataPropertyName = "Kategorija";
+            this.kategorijaDataGridViewTextBoxColumn.HeaderText = "Kategorija";
+            this.kategorijaDataGridViewTextBoxColumn.Name = "kategorijaDataGridViewTextBoxColumn";
+            // 
+            // atributaiDataGridViewTextBoxColumn
+            // 
+            this.atributaiDataGridViewTextBoxColumn.DataPropertyName = "Atributai";
+            this.atributaiDataGridViewTextBoxColumn.HeaderText = "Atributai";
+            this.atributaiDataGridViewTextBoxColumn.Name = "atributaiDataGridViewTextBoxColumn";
             // 
             // makeDiscount
             // 
             this.makeDiscount.HeaderText = "Padaryti nuolaidą";
             this.makeDiscount.Name = "makeDiscount";
-            this.makeDiscount.ReadOnly = true;
             this.makeDiscount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.makeDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.makeDiscount.Text = "Nuolaida";
@@ -231,16 +232,21 @@
             // 
             this.removeProduct.HeaderText = "Pašalinti";
             this.removeProduct.Name = "removeProduct";
-            this.removeProduct.ReadOnly = true;
             this.removeProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.removeProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.removeProduct.Text = "Pašalinti";
             this.removeProduct.UseColumnTextForButtonValue = true;
             this.removeProduct.Width = 60;
             // 
-            // productBindingSource
+            // prekeBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(WindowsFormsApplication3.Product);
+            this.prekeBindingSource.DataMember = "Preke";
+            this.prekeBindingSource.DataSource = this.prekeDataSet;
+            // 
+            // prekeDataSet
+            // 
+            this.prekeDataSet.DataSetName = "PrekeDataSet";
+            this.prekeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // buttonSort
             // 
@@ -263,12 +269,6 @@
             this.comboCategories.CausesValidation = false;
             this.comboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCategories.FormattingEnabled = true;
-            this.comboCategories.Items.AddRange(new object[] {
-            "Alkoholiniai gėrimai",
-            "Nealkoholiniai gėrimai",
-            "Vaisiai",
-            "Daržovės",
-            "Pieno produktai"});
             this.comboCategories.Location = new System.Drawing.Point(64, 366);
             this.comboCategories.Name = "comboCategories";
             this.comboCategories.Size = new System.Drawing.Size(131, 21);
@@ -364,14 +364,34 @@
             this.buttonAddProduct.Text = "Pridėti prekę";
             this.buttonAddProduct.Click += new System.EventHandler(this.buttonAddProduct_Click);
             // 
+            // prekeTableAdapter
+            // 
+            this.prekeTableAdapter.ClearBeforeFill = true;
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.AnimateGlow = true;
+            this.buttonRefresh.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.buttonRefresh.CausesValidation = false;
+            this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRefresh.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonRefresh.InnerBorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonRefresh.Location = new System.Drawing.Point(625, 376);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(89, 35);
+            this.buttonRefresh.TabIndex = 41;
+            this.buttonRefresh.Text = "Refresh kurva";
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication3.Properties.Resources.mosaic_background_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(742, 402);
+            this.ClientSize = new System.Drawing.Size(731, 593);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonAddProduct);
             this.Controls.Add(this.buttonScanWithCamera);
             this.Controls.Add(this.buttonDiscount);
@@ -396,11 +416,13 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminForm_FormClosed);
+            this.Load += new System.EventHandler(this.AdminForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AdminForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.AdminForm_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prekeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prekeDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,7 +435,6 @@
         private EnhancedGlassButton.GlassButton buttonReadFile;
         private EnhancedGlassButton.GlassButton buttonApprove;
         public System.Windows.Forms.DataGridView gridProducts;
-        private System.Windows.Forms.BindingSource productBindingSource;
         private EnhancedGlassButton.GlassButton buttonSort;
         private System.Windows.Forms.ComboBox comboCategories;
         private System.Windows.Forms.TextBox textBoxDiscount;
@@ -421,14 +442,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private EnhancedGlassButton.GlassButton buttonDiscount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barcodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pattributesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn makeDiscount;
-        private System.Windows.Forms.DataGridViewButtonColumn removeProduct;
         private EnhancedGlassButton.GlassButton buttonScanWithCamera;
         private EnhancedGlassButton.GlassButton buttonAddProduct;
+        private EnhancedGlassButton.GlassButton buttonRefresh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barkodasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pavadinimasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kainaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn svorisDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kategorijaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn atributaiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn makeDiscount;
+        private System.Windows.Forms.DataGridViewButtonColumn removeProduct;
+        private System.Windows.Forms.BindingSource prekeBindingSource;
+        private PrekeDataSetTableAdapters.PrekeTableAdapter prekeTableAdapter;
+        private PrekeDataSet prekeDataSet;
     }
 }

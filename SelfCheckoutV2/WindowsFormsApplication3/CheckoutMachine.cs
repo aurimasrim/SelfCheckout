@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace WindowsFormsApplication3
 {
@@ -51,6 +53,8 @@ namespace WindowsFormsApplication3
 
         // grąža
         private double change = 0;
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aurimas\Documents\GitHub\SelfCheckout\SelfCheckoutV2\WindowsFormsApplication3\ShopDB.mdf;Integrated Security=True";
+
         public double Change
         {
             get { return change; }
@@ -88,39 +92,29 @@ namespace WindowsFormsApplication3
         {
             if (!scannerOn) throw new PaymentStartedException();
             if (!isProductsWeightEqual()) throw new WeightEqualityException();
-            foreach (Product item in Productsdatabase)
+            using (SqlConnection cn = new SqlConnection(connectionString))
             {
-                if (args.Barcode.Equals(item.Barcode))
+                cn.Open();
+                DataSet ds = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Preke WHERE Barkodas = @Bar", cn);
+                cmd.Parameters.AddWithValue("@Bar", args.Barcode);
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count < 1)
                 {
-                    Product clone;
-                    if ((item.Pattributes.HasFlag(Attributes.Alcohol)))
-                    {
-                        needsApproval = true;
-                        //if (discountTime == true)
-                        //{
-                        //    clone = (Product)item.CloneWithDiscount(20);
-                        //    Scannedproductsarray.add(clone);
-                        //}
-                        //else
-                        //{
-                        clone = (Product)item.Clone();
-                        Scannedproductsarray.Add(clone);
-                        //}
-                    }
-                    else
-                    {
-                        clone = (Product)item.Clone();
-                        Scannedproductsarray.Add(clone);
-                    }
-                    if (item.Pattributes.HasFlag(Attributes.PaidTare))
-                        addTare();
-                    scannedProductsWeight += item.Weight;
-                    priceToPay += clone.Price;
-                    return;
+                    throw new EntryPointNotFoundException();
+                }
+                Product item = new Product(dt.Rows[0][1].ToString(), dt.Rows[0][0].ToString(), (int)dt.Rows[0][3], (double)dt.Rows[0][2], (Category)(int)dt.Rows[0][4], (Attributes)(int)dt.Rows[0][5]);
+                Scannedproductsarray.Add(item);
+                if ((item.Pattributes.HasFlag(Attributes.Alcohol))) needsApproval = true;
+                if (item.Pattributes.HasFlag(Attributes.PaidTare))
+                    addTare();
+                scannedProductsWeight += item.Weight;
+                priceToPay += item.Price;
                 }
             }
-            throw new EntryPointNotFoundException();
-        }
         // Jei sėkmingai nuskenuoja 1 
         // Jei produkto nėra duomenų bazėje 0
         // Jei negalima skenuoti nes nepasverta paskutinė prekė -1
@@ -293,8 +287,84 @@ namespace WindowsFormsApplication3
         {
             InternetReader ir = new InternetReader();
             //Thread thread = new Thread(() => 
-            Productsdatabase.Read<Product>(ir, address);
+            ir.ReadData(this, address);
             //thread.Start();
+        }
+        public void addProductToDatabase(Product product)
+        {
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlCommand insert = cn.CreateCommand())
+            {
+                cn.Open();
+
+                insert.Connection = cn;
+                insert.CommandType = CommandType.Text;
+                insert.CommandText = "INSERT INTO Preke (Barkodas, Pavadinimas, Kaina, Svoris, Kategorija, Atributai) VALUES (@Bar, @Pav, @Kai, @Svo, @Kat, @Atr)";
+
+                insert.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas"));
+                insert.Parameters.Add(new SqlParameter("@Pav", SqlDbType.VarChar, 50, "Pavadinimas"));
+                insert.Parameters.Add(new SqlParameter("@Kai", SqlDbType.Float, 10, "Kaina"));
+                insert.Parameters.Add(new SqlParameter("@Svo", SqlDbType.Int, 10, "Svoris"));
+                insert.Parameters.Add(new SqlParameter("@Kat", SqlDbType.Int, 10, "Kategorija"));
+                insert.Parameters.Add(new SqlParameter("@Atr", SqlDbType.Int, 10, "Atributai"));
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT Barkodas, Pavadinimas, Kaina, Svoris, Kategorija, Atributai FROM Preke", cn);
+                DataSet ds = new DataSet();
+
+                da.Fill(ds, "Preke");
+
+                da.InsertCommand = insert;
+
+
+                DataRow newRow = ds.Tables[0].NewRow();
+                newRow["Barkodas"] = product.Barcode;
+                newRow["Pavadinimas"] = product.Pname;
+                newRow["Kaina"] = product.Price;
+                newRow["Svoris"] = product.Weight;
+                newRow["Kategorija"] = (int)product.Pcategory;
+                newRow["Atributai"] = (int)product.Pattributes;
+
+                ds.Tables[0].Rows.Add(newRow);
+                da.Update(ds.Tables[0]);
+                da.Dispose();
+            }
+        }
+        public void removeProductFromDatabase(string barcode)
+        {
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlCommand delete = cn.CreateCommand())
+            {
+                cn.Open();
+
+                delete.Connection = cn;
+                delete.CommandType = CommandType.Text;
+                delete.CommandText = "DELETE FROM Preke WHERE Barkodas = @Bar";
+
+                delete.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas")).Value = barcode;
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Preke", cn);
+                DataSet ds = new DataSet();
+
+                da.Fill(ds, "Preke");
+
+                da.DeleteCommand = delete;
+                da.DeleteCommand.ExecuteNonQuery();
+
+                //da.Update(ds.Tables[0]);
+                da.Dispose();
+            }
+        }
+        public bool databaseContainsProduct(string barcode)
+        {
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Preke WHERE Barkodas = @Bar", cn);
+                cmd.Parameters.AddWithValue("@Bar", barcode);
+                if ((int)cmd.ExecuteScalar() != 0) return true;
+                else return false;
+            }
         }
     }
     [Serializable]

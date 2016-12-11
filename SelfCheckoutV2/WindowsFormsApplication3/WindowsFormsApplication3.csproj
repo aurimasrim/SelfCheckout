@@ -184,6 +184,11 @@
     <Compile Include="Preke.cs">
       <DependentUpon>ShopEM.tt</DependentUpon>
     </Compile>
+    <Compile Include="PrekeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrekeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="ProductInternetReader.cs" />
     <Compile Include="ProductScanEventArgs.cs" />
@@ -253,6 +258,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="PrekeDataSet.xsc">
+      <DependentUpon>PrekeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrekeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrekeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrekeDataSet.xss">
+      <DependentUpon>PrekeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\CheckoutMachine.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\Settings.settings">

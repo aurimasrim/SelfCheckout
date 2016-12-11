@@ -9,7 +9,7 @@ namespace WindowsFormsApplication3
 {
     class FileReader : DataReader
     {
-        public void ReadData<T>(CustomArray<T> dataArray, string path)
+        public void ReadData(CheckoutMachine cm, string path)
         {
             StreamReader dataReader = new StreamReader(path, Encoding.Default);
             string line;
@@ -22,14 +22,14 @@ namespace WindowsFormsApplication3
                 {
                     Product product;
                     if (splittedLine.Length == 5)
-                        product = new Product(splittedLine[0], splittedLine[1], int.Parse(splittedLine[2]), double.Parse(splittedLine[3]), (Attributes)int.Parse(splittedLine[4]));
+                        product = new Product(splittedLine[0], splittedLine[1], int.Parse(splittedLine[2]), double.Parse(splittedLine[3]), (Category)int.Parse(splittedLine[4]), (Attributes)int.Parse(splittedLine[5]));
                     // Jei nenurodomas Attributes
                     else
-                        product = new Product(splittedLine[0], splittedLine[1], int.Parse(splittedLine[2]), double.Parse(splittedLine[3]));
-                    if (!dataArray.Contains((T)(object)product))
-                    {
-                        dataArray.Add((T)(object)product);
-                    }
+                        product = new Product(splittedLine[0], splittedLine[1], int.Parse(splittedLine[2]), double.Parse(splittedLine[3]), (Category)int.Parse(splittedLine[4]));
+                    //if (!dataArray.Contains((T)(object)product))
+                    //{
+                    //    dataArray.Add((T)(object)product);
+                    //}
                 }
                 else throw new IOException();
             }

@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication3
 {
+    public enum Category
+    {
+        Kita = 0,
+        AlkoholiniaiGerimai = 1,
+        NealkoholiniaiGerimai = 2,
+        Vaisiai = 3,
+        Darzoves = 4,
+        PienoProduktai = 5,
+        DuonosGaminiai = 6,
+    }
     [Flags]
     public enum Attributes
     {
@@ -13,33 +23,33 @@ namespace WindowsFormsApplication3
         Drink = 1,
         PaidTare = 2,
         Alcohol = 4,
-        Fruit = 8,
-        Vegetable = 16,
-        Dairy = 32,
-        HaveDiscount = 64
+        HaveDiscount = 8
     };
     struct Product : IComparable, IEquatable<Product>, ICloneable
     {
         public static Product Tare
         {
-            get { return new Product("Butelio tara", null, 0, (double)0.1); }
+            get { return new Product("Butelio tara", null, 0, (double)0.1, Category.Kita); }
         }
         public static Product Bag
         {
-            get { return new Product("Maišelis", null, 10, (double)0.15); }
+            get { return new Product("Maišelis", null, 10, (double)0.15, Category.Kita); }
         }
         public string Pname { get; }
         public double Price { get; }
         public int Weight { get; }
         public string Barcode { get; }
+        public Category Pcategory { get; set; }
         public Attributes Pattributes { get; set; }
-        public Product(string name, string barcode, int weight, double price, Attributes attributes = Attributes.None)
+        public Product(string name, string barcode, int weight, double price, Category category, Attributes attributes = Attributes.None)
         {
             this.Pname = name;
             this.Barcode = barcode;
             this.Pattributes = attributes;
             this.Weight = weight;
             this.Price = price;
+            this.Pcategory = category;
+            
         }
         public int CompareTo(Object obj)
         {
@@ -57,13 +67,13 @@ namespace WindowsFormsApplication3
         }
         public object Clone()
         {
-            return new Product(Pname, Barcode, Weight, Price, Pattributes);
+            return new Product(Pname, Barcode, Weight, Price, Pcategory, Pattributes);
         }
         public object CloneWithDiscount(int discountPercentage)
         {
             if (!Pattributes.HasFlag(Attributes.HaveDiscount))
             {
-                return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pattributes | Attributes.HaveDiscount);
+                return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pcategory, Pattributes | Attributes.HaveDiscount);
             }
             else return this;
         }

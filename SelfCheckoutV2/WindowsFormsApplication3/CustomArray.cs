@@ -26,7 +26,7 @@ namespace WindowsFormsApplication3
         }
         public void Read <Product> (DataReader pdr, string path)
         {
-            pdr.ReadData(this, path);
+            //pdr.ReadData(this, path);
         }
         public int getSize()
         {

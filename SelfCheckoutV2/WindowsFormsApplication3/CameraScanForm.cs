@@ -199,15 +199,14 @@ namespace WindowsFormsApplication3
             {
 
                 barcode = rnd.Next(10000000, 99999999);
-                Product pr = new Product(null, barcode.ToString(), 0, 0);
+                Product pr = new Product(null, barcode.ToString(), 0, 0, Category.Kita);
                 if (!f1.cm.Productsdatabase.Contains(pr))
                     break;
             }
             double price = (double)rnd.Next(25, 1500) / 100;
-            Product product = new Product(node.InnerText, barcode.ToString(), rnd.Next(50, 5000), price) ;
-            f1.cm.Productsdatabase.Add(product);
-            f2.ResetBindings(true);
-            f1.adminWindow.ResetBindings(true);
+            Product product = new Product(node.InnerText, barcode.ToString(), rnd.Next(50, 5000), price, Category.Kita) ;
+            f1.cm.addProductToDatabase(product);
+            f1.adminWindow.GetData();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
