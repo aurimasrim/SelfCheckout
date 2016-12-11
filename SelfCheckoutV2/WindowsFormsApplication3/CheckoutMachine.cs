@@ -366,6 +366,45 @@ namespace WindowsFormsApplication3
                 else return false;
             }
         }
+        public void addCreditCardToDatabase(CreditCard product)
+        {
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlCommand insert = cn.CreateCommand())
+            {
+                cn.Open();
+
+                insert.Connection = cn;
+                insert.CommandType = CommandType.Text;
+                insert.CommandText = "INSERT INTO MokejimoKortele (Id, Tipas, Bankas, Slaptažodžio_salt, Slaptažodžio_hash, Likutis) VALUES (@Bar, @Pav, @Kai, @Svo, @Kat, @Atr)";
+
+                insert.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas"));
+                insert.Parameters.Add(new SqlParameter("@Pav", SqlDbType.VarChar, 50, "Pavadinimas"));
+                insert.Parameters.Add(new SqlParameter("@Kai", SqlDbType.Float, 10, "Kaina"));
+                insert.Parameters.Add(new SqlParameter("@Svo", SqlDbType.Int, 10, "Svoris"));
+                insert.Parameters.Add(new SqlParameter("@Kat", SqlDbType.Int, 10, "Kategorija"));
+                insert.Parameters.Add(new SqlParameter("@Atr", SqlDbType.Int, 10, "Atributai"));
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT Barkodas, Pavadinimas, Kaina, Svoris, Kategorija, Atributai FROM Preke", cn);
+                DataSet ds = new DataSet();
+
+                da.Fill(ds, "Preke");
+
+                da.InsertCommand = insert;
+
+
+                DataRow newRow = ds.Tables[0].NewRow();
+                newRow["Barkodas"] = product.Barcode;
+                newRow["Pavadinimas"] = product.Pname;
+                newRow["Kaina"] = product.Price;
+                newRow["Svoris"] = product.Weight;
+                newRow["Kategorija"] = (int)product.Pcategory;
+                newRow["Atributai"] = (int)product.Pattributes;
+
+                ds.Tables[0].Rows.Add(newRow);
+                da.Update(ds.Tables[0]);
+                da.Dispose();
+            }
+        }
     }
     [Serializable]
     class PaymentStartedException : Exception { }

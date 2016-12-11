@@ -58,6 +58,7 @@
             this.buttonAddProduct = new EnhancedGlassButton.GlassButton();
             this.prekeTableAdapter = new WindowsFormsApplication3.PrekeDataSetTableAdapters.PrekeTableAdapter();
             this.buttonRefresh = new EnhancedGlassButton.GlassButton();
+            this.buttonCreditCards = new EnhancedGlassButton.GlassButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeDataSet)).BeginInit();
@@ -69,7 +70,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Verdana", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(258, 18);
+            this.label1.Location = new System.Drawing.Point(311, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 27);
             this.label1.TabIndex = 25;
@@ -383,14 +384,28 @@
             this.buttonRefresh.Text = "Refresh kurva";
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // buttonCreditCards
+            // 
+            this.buttonCreditCards.AnimateGlow = true;
+            this.buttonCreditCards.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.buttonCreditCards.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCreditCards.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonCreditCards.InnerBorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonCreditCards.Location = new System.Drawing.Point(12, 417);
+            this.buttonCreditCards.Name = "buttonCreditCards";
+            this.buttonCreditCards.Size = new System.Drawing.Size(102, 35);
+            this.buttonCreditCards.TabIndex = 42;
+            this.buttonCreditCards.Text = "Mokėjimo kortelės";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication3.Properties.Resources.mosaic_background_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(731, 593);
+            this.ClientSize = new System.Drawing.Size(731, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonCreditCards);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonAddProduct);
             this.Controls.Add(this.buttonScanWithCamera);
@@ -456,5 +471,6 @@
         private System.Windows.Forms.BindingSource prekeBindingSource;
         private PrekeDataSetTableAdapters.PrekeTableAdapter prekeTableAdapter;
         private PrekeDataSet prekeDataSet;
+        private EnhancedGlassButton.GlassButton buttonCreditCards;
     }
 }
