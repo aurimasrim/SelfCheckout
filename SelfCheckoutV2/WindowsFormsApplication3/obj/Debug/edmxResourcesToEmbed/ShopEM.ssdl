@@ -4,11 +4,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="Tipas" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Bankas" Type="nchar" MaxLength="10" />
-    <Property Name="Slaptažodžio_salt" Type="char" MaxLength="10" Nullable="false" />
-    <Property Name="Slaptažodžio_hash" Type="char" MaxLength="64" Nullable="false" />
+    <Property Name="Slaptažodžio_salt" Type="char" MaxLength="24" Nullable="false" />
+    <Property Name="Slaptažodžio_hash" Type="char" MaxLength="44" Nullable="false" />
     <Property Name="likutis" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Nuolaidu_kortele">
@@ -25,10 +25,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Data" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="Nuolaidu_kortele" Type="int" />
-    <Property Name="Apmokejimo_tipas" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="Mokejimo_kortele" Type="int" />
+    <Property Name="Apmokejimo_tipas" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Mokejimo_kortele" Type="varchar" MaxLength="16" />
   </EntityType>
   <EntityType Name="Pirkimo_prekes">
     <Key>
@@ -50,7 +50,7 @@
     <Property Name="Kategorija" Type="int" Nullable="false" />
     <Property Name="Atributai" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Pirkimas__Mokeji__3A81B327">
+  <Association Name="FK__Pirkimas__Mokeji__45544755">
     <End Role="Mokejimo_kortele" Type="Self.Mokejimo_kortele" Multiplicity="0..1" />
     <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -62,7 +62,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pirkimas__Nuolai__398D8EEE">
+  <Association Name="FK__Pirkimas__Nuolai__22FF2F51">
     <End Role="Nuolaidu_kortele" Type="Self.Nuolaidu_kortele" Multiplicity="0..1" />
     <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -74,7 +74,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pirkimo_p__Pirki__0B5CAFEA">
+  <Association Name="FK__Pirkimo_p__Pirki__2116E6DF">
     <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="1" />
     <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
     <ReferentialConstraint>
@@ -104,15 +104,15 @@
     <EntitySet Name="Pirkimas" EntityType="Self.Pirkimas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pirkimo_prekes" EntityType="Self.Pirkimo_prekes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Preke" EntityType="Self.Preke" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Pirkimas__Mokeji__3A81B327" Association="Self.FK__Pirkimas__Mokeji__3A81B327">
+    <AssociationSet Name="FK__Pirkimas__Mokeji__45544755" Association="Self.FK__Pirkimas__Mokeji__45544755">
       <End Role="Mokejimo_kortele" EntitySet="Mokejimo_kortele" />
       <End Role="Pirkimas" EntitySet="Pirkimas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pirkimas__Nuolai__398D8EEE" Association="Self.FK__Pirkimas__Nuolai__398D8EEE">
+    <AssociationSet Name="FK__Pirkimas__Nuolai__22FF2F51" Association="Self.FK__Pirkimas__Nuolai__22FF2F51">
       <End Role="Nuolaidu_kortele" EntitySet="Nuolaidu_kortele" />
       <End Role="Pirkimas" EntitySet="Pirkimas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pirkimo_p__Pirki__0B5CAFEA" Association="Self.FK__Pirkimo_p__Pirki__0B5CAFEA">
+    <AssociationSet Name="FK__Pirkimo_p__Pirki__2116E6DF" Association="Self.FK__Pirkimo_p__Pirki__2116E6DF">
       <End Role="Pirkimas" EntitySet="Pirkimas" />
       <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
     </AssociationSet>

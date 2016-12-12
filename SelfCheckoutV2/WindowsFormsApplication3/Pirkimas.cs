@@ -21,10 +21,10 @@ namespace WindowsFormsApplication3
         }
     
         public int Id { get; set; }
-        public byte[] Data { get; set; }
+        public System.DateTime Data { get; set; }
         public Nullable<int> Nuolaidu_kortele { get; set; }
         public string Apmokejimo_tipas { get; set; }
-        public Nullable<int> Mokejimo_kortele { get; set; }
+        public string Mokejimo_kortele { get; set; }
     
         public virtual Mokejimo_kortele Mokejimo_kortele1 { get; set; }
         public virtual Nuolaidu_kortele Nuolaidu_kortele1 { get; set; }

@@ -71,6 +71,22 @@ namespace WindowsFormsApplication3
             payingMethod = PayingMethod.None;
             //creditCardsArray = new CustomArray<CreditCard>();
             creditCardsArray = new Lazy<CreditCardArray>(() => new CreditCardArray(cardPath));
+
+            using (var context = new ShopDBEntities1())
+            {
+                Product pr;
+                pr = Product.Bag;
+                if(context.Preke.SingleOrDefault(x => x.Barkodas == pr.Barcode) == null)
+                {
+                    context.Preke.Add(new Preke() { Barkodas = pr.Barcode, Kaina = pr.Price, Atributai = (int)pr.Pattributes, Kategorija = (int)pr.Pcategory, Pavadinimas = pr.Pname, Svoris = pr.Weight });
+                }
+                pr = Product.Tare;
+                if (context.Preke.SingleOrDefault(x => x.Barkodas == pr.Barcode) == null)
+                {
+                    context.Preke.Add(new Preke() { Barkodas = pr.Barcode, Kaina = pr.Price, Atributai = (int)pr.Pattributes, Kategorija = (int)pr.Pcategory, Pavadinimas = pr.Pname, Svoris = pr.Weight });
+                }
+                context.SaveChanges();
+            }
         }
         public bool isProductsWeightEqual() { return (scannedProductsWeight == productsWeight); }
         public bool isCardArrayEmpty()
@@ -198,24 +214,23 @@ namespace WindowsFormsApplication3
         //}
 
         // Jei sėkmingai 1
-        // Jei kortelė nerasta duomenų bazėje
+        // Jei kortelė nerasta duomenų bazėje 0
         // Jei nesėkmingai -1
-        // Jei kortelė jau įdėta
+        // Jei kortelė jau įdėta -2
         public int insertCard(string cardNumber)
         {
             if (payingCard == null)
             {
                 if (payingMethod == PayingMethod.CreditCard)
                 {
-                    foreach (CreditCard item in creditCardsArray.Value)
+                    using (var context = new ShopDBEntities1())
                     {
-                        //if (cardNumber == item.Number)
-                        //{
-                        //    payingCard = item;
-                        //    return 1;
-                        //}
+                        var card = context.Mokejimo_kortele.SingleOrDefault(x => x.Id == cardNumber);
+                        if (card == null)
+                            return 0;
+                        payingCard = new CreditCard(card.Id, card.Tipas, card.Bankas, card.Slaptažodžio_hash, card.Slaptažodžio_salt, card.Likutis);
+                        return 1;
                     }
-                    return 0;
                 }
                 else return -1;
             }
@@ -383,29 +398,59 @@ namespace WindowsFormsApplication3
                 context.SaveChanges();
             }
         }
-        public void removeCreditCardFromDatabase(int id)
+        public void removeCreditCardFromDatabase(string id)
         {
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            using (SqlCommand delete = cn.CreateCommand())
+            using (var context = new ShopDBEntities1())
             {
-                cn.Open();
+                var itemToRemove = context.Mokejimo_kortele.SingleOrDefault(x => x.Id == id);
+                context.Mokejimo_kortele.Remove(itemToRemove);
+                context.SaveChanges();
+            }
+        }
+        public void chargeCreditCard(double totalPrice)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                var card = context.Mokejimo_kortele.SingleOrDefault(x => x.Id == PayingCard.Number);
+                card.Likutis -= totalPrice;
+                context.SaveChanges();
+            }
+            addPurchaseToDatabase();
+        }
+        public void addPurchaseToDatabase()
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                var pirkimas = new Pirkimas();
+                if (payingMethod == PayingMethod.Cash)
+                {
+                    pirkimas.Apmokejimo_tipas = "Grynais";
+                    context.Pirkimas.Add(pirkimas);
+                }
+                else 
+                {
+                    pirkimas.Apmokejimo_tipas = "Kortele";
+                    pirkimas.Mokejimo_kortele = PayingCard.Number;
+                    context.Pirkimas.Add(pirkimas);
+                }
+                context.SaveChanges();
 
-                delete.Connection = cn;
-                delete.CommandType = CommandType.Text;
-                delete.CommandText = "DELETE FROM Preke WHERE Barkodas = @Bar";
-
-                delete.Parameters.Add(new SqlParameter("@Bar", SqlDbType.VarChar, 13, "Barkodas")).Value = barcode;
-
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Preke", cn);
-                DataSet ds = new DataSet();
-
-                da.Fill(ds, "Preke");
-
-                da.DeleteCommand = delete;
-                da.DeleteCommand.ExecuteNonQuery();
-
-                //da.Update(ds.Tables[0]);
-                da.Dispose();
+                foreach (var product in Scannedproductsarray)
+                {
+                    var updatePirkimo_prekes = context.Pirkimo_prekes.SingleOrDefault(x => (x.Preke == product.Barcode) && (x.Pirkimas == pirkimas.Id));
+                    if (updatePirkimo_prekes == null)
+                    {
+                        context.Pirkimo_prekes.Add(new Pirkimo_prekes() { Pirkimas = pirkimas.Id, Preke = product.Barcode, Kiekis = 1 });
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        updatePirkimo_prekes.Kiekis += 1;
+                        context.SaveChanges();
+                    }
+                }
+                context.ChangeTracker.DetectChanges();
+                context.SaveChanges();
             }
         }
     }

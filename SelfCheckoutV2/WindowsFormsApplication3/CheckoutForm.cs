@@ -97,6 +97,7 @@ namespace WindowsFormsApplication3
                 {
                     if (cm.Change != 0) MessageBoxForm.Show("Paimkite grąžą: " + cm.Change.ToString("0.00"));
                     MessageBoxForm.Show("Geros dienos!");
+                    cm.addPurchaseToDatabase();
                     this.Close();
                 }
             }

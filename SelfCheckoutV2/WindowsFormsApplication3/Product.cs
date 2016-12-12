@@ -29,11 +29,11 @@ namespace WindowsFormsApplication3
     {
         public static Product Tare
         {
-            get { return new Product("Butelio tara", null, 0, (double)0.1, Category.Kita); }
+            get { return new Product("Butelio tara", "00000001", 0, (double)0.1, Category.Kita); }
         }
         public static Product Bag
         {
-            get { return new Product("Maišelis", null, 10, (double)0.15, Category.Kita); }
+            get { return new Product("Maišelis", "00000000", 10, (double)0.15, Category.Kita); }
         }
         public string Pname { get; }
         public double Price { get; }

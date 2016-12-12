@@ -88,10 +88,12 @@ namespace WindowsFormsApplication3
         {
             if (f1.cm.PayingCard != null)
             {
-                if (f1.cm.isPasswordValid(textBoxPassword.Text))
+                if (new PasswordTool().ComparePasswordToHash(textBoxPassword.Text, f1.cm.PayingCard.PasswordSalt, f1.cm.PayingCard.PasswordHash))
                 {
-                    if (f1.cm.PayingCard.chargeBalance(f1.cm.PriceToPay))
+                    if (f1.cm.PayingCard.Balance >= f1.cm.PriceToPay)
                     {
+                        f1.cm.chargeCreditCard(f1.cm.PriceToPay);
+                        
                         MessageBoxForm.Show("Sėkmingai apmokėta. Paimkite prekes.\nGeros dienos!");
                         f1.Close();
                     }
@@ -99,7 +101,7 @@ namespace WindowsFormsApplication3
                     {
                         MessageBoxForm.Show("Nepakankamas sąskaitos likutis\nPasirinkite kitą mokėjimo būdą arba įdėkite kitą kreditinę kortelę");
                         buttonBack_Click(sender, e);
-                    }
+                    }        
                 }
                 else MessageBoxForm.Show("Neteisingas slaptažodis");
             }
@@ -176,6 +178,20 @@ namespace WindowsFormsApplication3
                 f1.addBag();
             }
             modePayMethods();
+        }
+
+        private void textBoxPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxPassword.Text, @"^\d{4}$"))
+            {
+                e.Cancel = true;
+                textBoxPassword.BackColor = Color.Red;
+            }
+        }
+
+        private void textBoxPassword_Validated(object sender, EventArgs e)
+        {
+            textBoxPassword.BackColor = Color.LightBlue;
         }
     }
 }

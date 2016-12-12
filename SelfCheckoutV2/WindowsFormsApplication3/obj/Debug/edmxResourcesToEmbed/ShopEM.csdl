@@ -4,11 +4,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
     <Property Name="Tipas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Bankas" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Slaptažodžio_salt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="Slaptažodžio_hash" Type="String" MaxLength="64" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Slaptažodžio_salt" Type="String" MaxLength="24" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Slaptažodžio_hash" Type="String" MaxLength="44" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Pirkimas" Relationship="Self.FK__Pirkimas__Mokeji__3A81B327" FromRole="Mokejimo_kortele" ToRole="Pirkimas" />
     <Property Name="Likutis" Type="Double" Nullable="false" />
   </EntityType>
@@ -27,10 +27,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Data" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Data" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
     <Property Name="Nuolaidu_kortele" Type="Int32" />
-    <Property Name="Apmokejimo_tipas" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Mokejimo_kortele" Type="Int32" />
+    <Property Name="Apmokejimo_tipas" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mokejimo_kortele" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Mokejimo_kortele1" Relationship="Self.FK__Pirkimas__Mokeji__3A81B327" FromRole="Pirkimas" ToRole="Mokejimo_kortele" />
     <NavigationProperty Name="Nuolaidu_kortele1" Relationship="Self.FK__Pirkimas__Nuolai__398D8EEE" FromRole="Pirkimas" ToRole="Nuolaidu_kortele" />
     <NavigationProperty Name="Pirkimo_prekes" Relationship="Self.FK__Pirkimo_p__Pirki__3C69FB99" FromRole="Pirkimas" ToRole="Pirkimo_prekes" />

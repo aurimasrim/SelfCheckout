@@ -20,7 +20,7 @@ namespace WindowsFormsApplication3
             this.Pirkimas = new HashSet<Pirkimas>();
         }
     
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Tipas { get; set; }
         public string Bankas { get; set; }
         public string Slaptažodžio_salt { get; set; }

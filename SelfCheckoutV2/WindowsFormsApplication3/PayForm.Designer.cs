@@ -55,6 +55,8 @@
             this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword.TabIndex = 3;
             this.textBoxPassword.Visible = false;
+            this.textBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxPassword_Validating);
+            this.textBoxPassword.Validated += new System.EventHandler(this.textBoxPassword_Validated);
             // 
             // label1
             // 
@@ -199,6 +201,7 @@
             this.textBagCount.Name = "textBagCount";
             this.textBagCount.Size = new System.Drawing.Size(65, 66);
             this.textBagCount.TabIndex = 38;
+            this.textBagCount.Text = "0";
             // 
             // buttonOk
             // 

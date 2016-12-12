@@ -33,7 +33,7 @@ namespace WindowsFormsApplication3
         private void CreditCardsForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'shopDBDataSet.Mokejimo_kortele' table. You can move, or remove it, as needed.
-            this.mokejimo_korteleTableAdapter.Fill(this.shopDBDataSet.Mokejimo_kortele);
+            GetData();
 
         }
 
@@ -62,8 +62,9 @@ namespace WindowsFormsApplication3
         {
             if (gridCards.Columns[e.ColumnIndex].Name == "remove")
             {
-                f1.cm.removeProductFromDatabase(gridProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
-                df.Show();
+                f1.cm.removeCreditCardFromDatabase(gridCards.Rows[e.RowIndex].Cells[0].Value.ToString());
+                GetData();
+                //df.Show();
                 //this.ResetBindings(true);
                 //f2.ResetBindings(true);
             }

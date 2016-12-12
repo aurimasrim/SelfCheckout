@@ -163,6 +163,7 @@
     <Compile Include="Nuolaidu_kortele.cs">
       <DependentUpon>ShopEM.tt</DependentUpon>
     </Compile>
+    <Compile Include="PasswordTool.cs" />
     <Compile Include="PayForm.cs">
       <SubType>Form</SubType>
     </Compile>

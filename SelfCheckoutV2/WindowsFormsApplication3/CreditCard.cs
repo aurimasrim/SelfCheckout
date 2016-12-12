@@ -8,7 +8,7 @@ namespace WindowsFormsApplication3
 {
     class CreditCard
     {
-        public int Number { get; }
+        public string Number { get; }
         public string Type { get; }
         public string BankName { get; }
         public string PasswordHash { get; }
@@ -19,7 +19,7 @@ namespace WindowsFormsApplication3
         {
             get { return balance; }
         }
-        public CreditCard(int number, string type, string bankName, string passwordHash, string passwordSalt, double balance)
+        public CreditCard(string number, string type, string bankName, string passwordHash, string passwordSalt, double balance)
         {
             this.Number = number;
             this.Type = type;

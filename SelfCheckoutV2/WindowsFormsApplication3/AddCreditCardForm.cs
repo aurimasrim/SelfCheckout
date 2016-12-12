@@ -52,7 +52,10 @@ namespace WindowsFormsApplication3
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            f1.cm.addCreditCardToDatabase(new CreditCard(int.Parse(textBoxId.Text), textBoxType.Text, textBoxBank.Text, "hashh", "sallltt", double.Parse(textBoxBalance.Text)));
+            PasswordTool pt = new PasswordTool();
+            string salt = pt.getNewSalt();
+            string hash = pt.GetStringHash(textBoxPassword.Text, salt);
+            f1.cm.addCreditCardToDatabase(new CreditCard(textBoxId.Text, textBoxType.Text, textBoxBank.Text, hash, salt, double.Parse(textBoxBalance.Text)));
             f3.ccf.GetData();
             this.Close();
         }
@@ -115,6 +118,20 @@ namespace WindowsFormsApplication3
         private void textBoxName_Validated(object sender, EventArgs e)
         {
             textBoxId.BackColor = Color.LightBlue;
+        }
+
+        private void textBoxPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxPassword.Text, @"^\d{4}$"))
+            {
+                e.Cancel = true;
+                textBoxPassword.BackColor = Color.Red;
+            }
+        }
+
+        private void textBoxPassword_Validated(object sender, EventArgs e)
+        {
+            textBoxPassword.BackColor = Color.LightBlue;
         }
     }
 }

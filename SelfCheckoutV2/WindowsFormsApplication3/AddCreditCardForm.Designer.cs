@@ -39,6 +39,8 @@
             this.textBoxType = new System.Windows.Forms.TextBox();
             this.textBoxBank = new System.Windows.Forms.TextBox();
             this.textBoxBalance = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxId
@@ -69,10 +71,10 @@
             this.buttonOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonOk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.buttonOk.InnerBorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonOk.Location = new System.Drawing.Point(184, 232);
+            this.buttonOk.Location = new System.Drawing.Point(184, 282);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(89, 35);
-            this.buttonOk.TabIndex = 5;
+            this.buttonOk.TabIndex = 7;
             this.buttonOk.Text = "Gerai";
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -84,7 +86,7 @@
             this.buttonCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonCancel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.buttonCancel.InnerBorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonCancel.Location = new System.Drawing.Point(21, 232);
+            this.buttonCancel.Location = new System.Drawing.Point(21, 282);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(89, 35);
             this.buttonCancel.TabIndex = 6;
@@ -107,7 +109,7 @@
             this.Barkodas.AutoSize = true;
             this.Barkodas.BackColor = System.Drawing.Color.Transparent;
             this.Barkodas.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.Barkodas.Location = new System.Drawing.Point(37, 173);
+            this.Barkodas.Location = new System.Drawing.Point(37, 223);
             this.Barkodas.Name = "Barkodas";
             this.Barkodas.Size = new System.Drawing.Size(59, 17);
             this.Barkodas.TabIndex = 31;
@@ -156,12 +158,35 @@
             // textBoxBalance
             // 
             this.textBoxBalance.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBoxBalance.Location = new System.Drawing.Point(40, 193);
+            this.textBoxBalance.Location = new System.Drawing.Point(40, 243);
             this.textBoxBalance.Name = "textBoxBalance";
             this.textBoxBalance.Size = new System.Drawing.Size(233, 20);
-            this.textBoxBalance.TabIndex = 4;
+            this.textBoxBalance.TabIndex = 5;
             this.textBoxBalance.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxBarcode_Validating);
             this.textBoxBalance.Validated += new System.EventHandler(this.textBoxBarcode_Validated);
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textBoxPassword.Location = new System.Drawing.Point(40, 200);
+            this.textBoxPassword.MaxLength = 4;
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(233, 20);
+            this.textBoxPassword.TabIndex = 4;
+            this.textBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxPassword_Validating);
+            this.textBoxPassword.Validated += new System.EventHandler(this.textBoxPassword_Validated);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.label5.Location = new System.Drawing.Point(37, 180);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 17);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Slaptažodis";
             // 
             // AddCreditCardForm
             // 
@@ -169,8 +194,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication3.Properties.Resources.mosaic_background_1;
-            this.ClientSize = new System.Drawing.Size(311, 280);
+            this.ClientSize = new System.Drawing.Size(311, 319);
             this.ControlBox = false;
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxBalance);
             this.Controls.Add(this.textBoxBank);
             this.Controls.Add(this.textBoxType);
@@ -203,5 +230,7 @@
         private System.Windows.Forms.TextBox textBoxType;
         private System.Windows.Forms.TextBox textBoxBank;
         private System.Windows.Forms.TextBox textBoxBalance;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label label5;
     }
 }
