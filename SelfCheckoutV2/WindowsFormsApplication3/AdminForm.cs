@@ -44,7 +44,7 @@ namespace WindowsFormsApplication3
             string path = f1.getPath();
             Thread thread = new Thread(() =>
             {
-                Monitor.Enter(f1.cm.Productsdatabase);
+                //Monitor.Enter(f1.cm.Productsdatabase);
                 try
                 {
                     f1.cm.readProductData(path);
@@ -56,10 +56,10 @@ namespace WindowsFormsApplication3
                     MessageBoxForm.Show("Blogi failo duomenys");
                 }
                 catch (ArgumentNullException) { }
-                finally
-                {
-                    Monitor.Exit(f1.cm.Productsdatabase);
-                }
+                //finally
+                //{
+                   // Monitor.Exit(f1.cm.Productsdatabase);
+                //}
             });
             thread.Start();
         }
@@ -109,12 +109,10 @@ namespace WindowsFormsApplication3
         {
             f1.Close();
         }
-
         private void buttonApprove_Click(object sender, EventArgs e)
         {
             f1.approveAge();
         }
-
         private void gridProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridProducts.Columns[e.ColumnIndex].Name == "makeDiscount")
@@ -132,38 +130,19 @@ namespace WindowsFormsApplication3
                 //f2.ResetBindings(true);
             }
         }
-
-        private void buttonSort_Click(object sender, EventArgs e)
-        {
-            f1.cm.Productsdatabase.Sort();
-            //this.ResetBindings(true);
-            //f2.ResetBindings(true);
-        }
-
         private void buttonDiscount_Click(object sender, EventArgs e)
         {
-            Attributes category = Attributes.None;
-            switch (comboCategories.SelectedIndex)
-            {
-                case 0:
-                    category = Attributes.Alcohol;
-                    break;
-                case 1:
-                    category = Attributes.Drink;
-                    break;
-            }
             
-            for(int i = 0; i < f1.cm.Productsdatabase.getSize(); i++)
+            Category cat = (Category)comboCategories.SelectedIndex;
+            double mult = 1 - double.Parse(textBoxDiscount.Text) / 100;
+            using (var context = new ShopDBEntities1())
             {
-                if (f1.cm.Productsdatabase[i].Pattributes.HasFlag((Attributes)Enum.Parse(typeof(Attributes), category.ToString())))
-                {
-                    f1.cm.Productsdatabase.Replace(i, (Product)f1.cm.Productsdatabase[i].CloneWithDiscount(int.Parse(textBoxDiscount.Text)));
-                    f1.cm.Productsdatabase[i].AddAttribute(Attributes.HaveDiscount);
-                }
-            
+                var productList = context.Preke.Where(x => (Category)x.Kategorija == cat).ToList();
+                productList.ForEach(x => x.Kaina = x.Kaina * mult);
+                context.SaveChanges();
             }
-            //this.ResetBindings(true);
-            //f2.ResetBindings(true);
+            GetData();
+
         }
         private void textBoxDiscount_Validating(object sender, CancelEventArgs e)
         {
@@ -196,6 +175,8 @@ namespace WindowsFormsApplication3
             // TODO: This line of code loads data into the 'prekeDataSet.Preke' table. You can move, or remove it, as needed.
             //this.prekeTableAdapter.Fill(this.prekeDataSet.Preke);
             this.GetData();
+            comboCategories.DataSource = Enum.GetNames(typeof(Category));
+            comboCategories.SelectedIndex = 0;
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)

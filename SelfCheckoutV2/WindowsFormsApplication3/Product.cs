@@ -22,8 +22,7 @@ namespace WindowsFormsApplication3
         None = 0,
         Drink = 1,
         PaidTare = 2,
-        Alcohol = 4,
-        HaveDiscount = 8
+        Alcohol = 4
     };
     struct Product : IComparable, IEquatable<Product>, ICloneable
     {

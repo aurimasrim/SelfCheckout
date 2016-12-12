@@ -19,8 +19,7 @@ namespace WindowsFormsApplication3
         {
             InitializeComponent();
             this.f1 = f1;
-            productBindingSource.DataSource = f1.cm.Productsdatabase.Array;
-            gridProducts.DataSource = productBindingSource;
+            //gridProducts.DataSource = productBindingSource;
 
             //spalvos
             DataGridViewButtonColumn c = (DataGridViewButtonColumn)gridProducts.Columns["scanProduct"];
@@ -65,7 +64,7 @@ namespace WindowsFormsApplication3
                 Action<bool> resetBindingsCallBack = new Action <bool> (ResetBindings);
                 this.Invoke(resetBindingsCallBack, value);
             }
-            else productBindingSource.ResetBindings(value);
+            //else productBindingSource.ResetBindings(value);
         }
         private void gridProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -218,7 +217,7 @@ namespace WindowsFormsApplication3
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            productBindingSource.ResetBindings(false);
+            //productBindingSource.ResetBindings(false);
         }
 
         private void ClientForm_Load(object sender, EventArgs e)

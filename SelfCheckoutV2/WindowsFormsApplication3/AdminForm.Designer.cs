@@ -47,7 +47,6 @@
             this.removeProduct = new System.Windows.Forms.DataGridViewButtonColumn();
             this.prekeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prekeDataSet = new WindowsFormsApplication3.PrekeDataSet();
-            this.buttonSort = new EnhancedGlassButton.GlassButton();
             this.comboCategories = new System.Windows.Forms.ComboBox();
             this.textBoxDiscount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -249,21 +248,6 @@
             this.prekeDataSet.DataSetName = "PrekeDataSet";
             this.prekeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // buttonSort
-            // 
-            this.buttonSort.AnimateGlow = true;
-            this.buttonSort.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.buttonSort.CausesValidation = false;
-            this.buttonSort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.buttonSort.InnerBorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonSort.Location = new System.Drawing.Point(625, 335);
-            this.buttonSort.Name = "buttonSort";
-            this.buttonSort.Size = new System.Drawing.Size(89, 35);
-            this.buttonSort.TabIndex = 32;
-            this.buttonSort.Text = "Surūšiuoti";
-            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
-            // 
             // comboCategories
             // 
             this.comboCategories.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -279,6 +263,7 @@
             // 
             this.textBoxDiscount.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxDiscount.Location = new System.Drawing.Point(214, 367);
+            this.textBoxDiscount.MaxLength = 2;
             this.textBoxDiscount.Name = "textBoxDiscount";
             this.textBoxDiscount.Size = new System.Drawing.Size(31, 20);
             this.textBoxDiscount.TabIndex = 34;
@@ -377,7 +362,7 @@
             this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRefresh.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.buttonRefresh.InnerBorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonRefresh.Location = new System.Drawing.Point(625, 376);
+            this.buttonRefresh.Location = new System.Drawing.Point(625, 335);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(89, 35);
             this.buttonRefresh.TabIndex = 41;
@@ -416,7 +401,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxDiscount);
             this.Controls.Add(this.comboCategories);
-            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.gridProducts);
             this.Controls.Add(this.buttonApprove);
             this.Controls.Add(this.buttonReadFile);
@@ -451,7 +435,6 @@
         private EnhancedGlassButton.GlassButton buttonReadFile;
         private EnhancedGlassButton.GlassButton buttonApprove;
         public System.Windows.Forms.DataGridView gridProducts;
-        private EnhancedGlassButton.GlassButton buttonSort;
         private System.Windows.Forms.ComboBox comboCategories;
         private System.Windows.Forms.TextBox textBoxDiscount;
         private System.Windows.Forms.Label label2;

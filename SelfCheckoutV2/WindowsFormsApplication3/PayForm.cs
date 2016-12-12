@@ -193,5 +193,19 @@ namespace WindowsFormsApplication3
         {
             textBoxPassword.BackColor = Color.LightBlue;
         }
+
+        private void textBagCount_Validating(object sender, CancelEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBagCount.Text, @"^\d{1,2}$"))
+            {
+                e.Cancel = true;
+                textBagCount.BackColor = Color.Red;
+            }
+        }
+
+        private void textBagCount_Validated(object sender, EventArgs e)
+        {
+
+        }
     }
 }

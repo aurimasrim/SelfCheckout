@@ -27,7 +27,7 @@ namespace WindowsFormsApplication3
         {
             Thread thread = new Thread(() =>
             {
-                Monitor.Enter(f1.cm.Productsdatabase);
+                //Monitor.Enter(f1);
                 try
                 {
                     f1.cm.readFromInternet(textBoxAddress.Text);
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication3
                 }
                 finally
                 {
-                    Monitor.Exit(f1.cm.Productsdatabase);
+                    //Monitor.Exit(f1.cm.Productsdatabase);
                     this.Invoke((MethodInvoker)delegate () {this.Close(); }); ;
                 }
 

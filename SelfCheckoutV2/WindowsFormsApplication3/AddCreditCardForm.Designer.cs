@@ -47,6 +47,7 @@
             // 
             this.textBoxId.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxId.Location = new System.Drawing.Point(40, 68);
+            this.textBoxId.MaxLength = 16;
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.Size = new System.Drawing.Size(233, 20);
             this.textBoxId.TabIndex = 1;
@@ -141,6 +142,7 @@
             // 
             this.textBoxType.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxType.Location = new System.Drawing.Point(40, 111);
+            this.textBoxType.MaxLength = 20;
             this.textBoxType.Name = "textBoxType";
             this.textBoxType.Size = new System.Drawing.Size(233, 20);
             this.textBoxType.TabIndex = 2;
@@ -151,6 +153,7 @@
             // 
             this.textBoxBank.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxBank.Location = new System.Drawing.Point(40, 150);
+            this.textBoxBank.MaxLength = 20;
             this.textBoxBank.Name = "textBoxBank";
             this.textBoxBank.Size = new System.Drawing.Size(233, 20);
             this.textBoxBank.TabIndex = 3;
@@ -159,6 +162,7 @@
             // 
             this.textBoxBalance.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxBalance.Location = new System.Drawing.Point(40, 243);
+            this.textBoxBalance.MaxLength = 8;
             this.textBoxBalance.Name = "textBoxBalance";
             this.textBoxBalance.Size = new System.Drawing.Size(233, 20);
             this.textBoxBalance.TabIndex = 5;

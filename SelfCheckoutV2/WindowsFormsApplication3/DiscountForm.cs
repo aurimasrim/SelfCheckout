@@ -26,9 +26,14 @@ namespace WindowsFormsApplication3
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            f1.cm.Productsdatabase.Replace(af.gridProducts.CurrentCell.RowIndex, (Product)f1.cm.Productsdatabase[af.gridProducts.CurrentCell.RowIndex].CloneWithDiscount(int.Parse(textBoxDiscount.Text)));
-            //af.ResetBindings(true);
-            //f2.ResetBindings(true);
+            double mult = 1 - double.Parse(textBoxDiscount.Text) / 100;
+            using (var context = new ShopDBEntities1())
+            {
+                var product = context.Preke.ToList()[RowIndex];
+                product.Kaina = product.Kaina * mult;
+                context.SaveChanges();
+            }
+            af.GetData();
             this.Close();
         }
         private void textBoxDiscount_Validating(object sender, CancelEventArgs e)

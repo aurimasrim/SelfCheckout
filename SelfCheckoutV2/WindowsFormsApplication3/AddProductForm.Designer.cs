@@ -50,6 +50,7 @@
             // 
             this.textBoxName.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxName.Location = new System.Drawing.Point(40, 68);
+            this.textBoxName.MaxLength = 50;
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(233, 20);
             this.textBoxName.TabIndex = 1;
@@ -144,6 +145,7 @@
             // 
             this.textBoxPrice.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxPrice.Location = new System.Drawing.Point(40, 111);
+            this.textBoxPrice.MaxLength = 8;
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(233, 20);
             this.textBoxPrice.TabIndex = 34;
@@ -154,6 +156,7 @@
             // 
             this.textBoxWeight.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxWeight.Location = new System.Drawing.Point(40, 150);
+            this.textBoxWeight.MaxLength = 7;
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(233, 20);
             this.textBoxWeight.TabIndex = 35;
@@ -164,6 +167,7 @@
             // 
             this.textBoxBarcode.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxBarcode.Location = new System.Drawing.Point(40, 193);
+            this.textBoxBarcode.MaxLength = 13;
             this.textBoxBarcode.Name = "textBoxBarcode";
             this.textBoxBarcode.Size = new System.Drawing.Size(233, 20);
             this.textBoxBarcode.TabIndex = 37;

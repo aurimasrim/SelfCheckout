@@ -54,27 +54,6 @@ namespace WindowsFormsApplication3
             gridScannedProducts.Columns[1].DefaultCellStyle.Format = "N2";
             boxTotal.Text = cm.PriceToPay.ToString("0.00");
         }
-        public void scan(string barcode)
-        {
-            int res = cm.scan(barcode);
-            if (res == 1)
-            {
-                beep.Play();
-                //bindData();   !
-
-                testingWindow.gridProducts.ClearSelection();
-                //testingWindow.gridProducts.Rows[testingWindow.gridProducts].Cells[5].Selected = true;
-            }
-            else if (res == 0)
-            {
-                MessageBoxForm.Show("Produktas nerastas duomenų bazėje");
-            }
-            else if (res == -1)
-            {
-                MessageBoxForm.Show("Pirma padėkite paskutinę nuskenuotą prekę");
-            }
-            else MessageBoxForm.Show("Nebegalite skenuoti prekių, nes pradėjote apmokėjimą\nSpauskite atgal");
-        }
         public void weigh (int weight)
         {
             gridScannedProducts.ClearSelection();

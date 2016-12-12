@@ -33,7 +33,6 @@ namespace WindowsFormsApplication3
     class CheckoutMachine
     {
         public string cardPath = String.Concat(Directory.GetCurrentDirectory(), @"\creditcarddata.txt");
-        public CustomArray<Product> Productsdatabase { get; set; }
         public CustomArray<Product> Scannedproductsarray { get; set; }
         private Lazy<CreditCardArray> creditCardsArray;
         public DataSet CreditCardsDataSet = new DataSet();
@@ -66,7 +65,6 @@ namespace WindowsFormsApplication3
         }
         public CheckoutMachine()
         {
-            Productsdatabase = new CustomArray<Product>();
             Scannedproductsarray = new CustomArray<Product>();
             payingMethod = PayingMethod.None;
             //creditCardsArray = new CustomArray<CreditCard>();
@@ -132,64 +130,6 @@ namespace WindowsFormsApplication3
                 priceToPay += item.Price;
                 }
             }
-        // Jei sėkmingai nuskenuoja 1 
-        // Jei produkto nėra duomenų bazėje 0
-        // Jei negalima skenuoti nes nepasverta paskutinė prekė -1
-        // Jei negalima, nes pradėtas apmokėjimas -2
-        public int scan(string barcode)
-        {
-            TimeSpan start = new TimeSpan(8, 0, 0);
-            TimeSpan end = new TimeSpan(18, 0, 0);
-            TimeSpan now = DateTime.Now.TimeOfDay;
-            bool discountTime = false;
-            if ((now >= start) && (now <= end))
-            {
-                discountTime = true;
-            }
-            if (scannerOn)
-            {
-                if (isProductsWeightEqual())
-                {
-                    foreach (Product item in Productsdatabase)
-                    {
-                        if (barcode.Equals(item.Barcode))
-                        {
-                            Product clone;
-                            if ((item.Pattributes.HasFlag(Attributes.Alcohol)))
-                            {
-                                needsApproval = true;
-                                if (discountTime == true)
-                                {
-                                    clone = (Product)item.CloneWithDiscount(20);
-                                    Scannedproductsarray.Add(clone);
-                                }
-                                else
-                                {
-                                    clone = (Product)item.Clone();
-                                    Scannedproductsarray.Add(clone);
-                                }
-                            }
-                            else
-                            {
-                                clone = (Product)item.Clone();
-                                Scannedproductsarray.Add(clone);
-                            }
-                            if (item.Pattributes.HasFlag(Attributes.PaidTare))
-                                addTare();
-                            scannedProductsWeight += item.Weight;
-                            priceToPay += clone.Price;
-                            return 1;
-                        }
-                    }
-                    return 0;
-                }
-                else return -1;
-            }
-            else return -2;
-        }
-        // Jei sėkmingai pasveria 1
-        // Jei nereikėjo sverti 0
-        // Jei nesutampa svoriai -1
         public void ProductWeighHandler(object sender, ProductWeighEventArgs args)
         {
             if (isProductsWeightEqual()) throw new WeightEqualityException();
@@ -277,27 +217,6 @@ namespace WindowsFormsApplication3
             FileReader fr = new FileReader();
             //Thread thread = new Thread(() => Productsdatabase.Read<Product>(fr, path));
             //thread.Start();
-            Productsdatabase.Read<Product>(fr, path);
-        }
-        public void writeCardData(string path)
-        {
-            StreamReader sr = new StreamReader(path);
-            List<string> allLines = new List<string>();
-            string line = null;
-            foreach (CreditCard item in creditCardsArray.Value)
-            {
-                line = sr.ReadLine();
-                line = System.Text.RegularExpressions.Regex.Replace(line, @"/\d+(,\d)?\d?$", "/" + item.Balance.ToString());
-
-                allLines.Add(line);
-            }
-            sr.Close();
-            StreamWriter sw = new StreamWriter(path);
-            foreach (string item in allLines)
-            {
-                sw.WriteLine(item);
-            }
-            sw.Close();
         }
         public void readFromInternet(string address)
         {

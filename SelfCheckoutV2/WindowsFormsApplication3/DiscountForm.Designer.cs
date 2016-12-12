@@ -50,6 +50,7 @@
             // 
             this.textBoxDiscount.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxDiscount.Location = new System.Drawing.Point(39, 39);
+            this.textBoxDiscount.MaxLength = 2;
             this.textBoxDiscount.Name = "textBoxDiscount";
             this.textBoxDiscount.Size = new System.Drawing.Size(173, 20);
             this.textBoxDiscount.TabIndex = 1;

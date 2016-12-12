@@ -50,6 +50,7 @@
             // 
             this.textBoxBarcode.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxBarcode.Location = new System.Drawing.Point(39, 39);
+            this.textBoxBarcode.MaxLength = 13;
             this.textBoxBarcode.Name = "textBoxBarcode";
             this.textBoxBarcode.Size = new System.Drawing.Size(173, 20);
             this.textBoxBarcode.TabIndex = 1;

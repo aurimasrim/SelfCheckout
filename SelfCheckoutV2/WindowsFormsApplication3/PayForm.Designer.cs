@@ -198,10 +198,13 @@
             this.textBagCount.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBagCount.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.textBagCount.Location = new System.Drawing.Point(190, 75);
+            this.textBagCount.MaxLength = 2;
             this.textBagCount.Name = "textBagCount";
             this.textBagCount.Size = new System.Drawing.Size(65, 66);
             this.textBagCount.TabIndex = 38;
             this.textBagCount.Text = "0";
+            this.textBagCount.Validating += new System.ComponentModel.CancelEventHandler(this.textBagCount_Validating);
+            this.textBagCount.Validated += new System.EventHandler(this.textBagCount_Validated);
             // 
             // buttonOk
             // 

@@ -29,7 +29,6 @@ namespace WindowsFormsApplication3
             InitializeComponent();
             this.f1 = f1;
             this.f2 = f2;
-            productBindingSource.DataSource = f1.cm.Productsdatabase.Array;
             ForAdding = forAdding;
 
             //comboCategories.DataSource = Enum.GetNames(typeof(Attributes));
@@ -199,8 +198,7 @@ namespace WindowsFormsApplication3
             {
 
                 barcode = rnd.Next(10000000, 99999999);
-                Product pr = new Product(null, barcode.ToString(), 0, 0, Category.Kita);
-                if (!f1.cm.Productsdatabase.Contains(pr))
+                if (!f1.cm.databaseContainsProduct(barcode.ToString()))
                     break;
             }
             double price = (double)rnd.Next(25, 1500) / 100;
