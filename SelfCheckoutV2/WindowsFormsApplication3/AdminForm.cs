@@ -48,6 +48,7 @@ namespace WindowsFormsApplication3
                 try
                 {
                     f1.cm.readProductData(path);
+
                     //this.ResetBindings(true);
                     //f2.ResetBindings(true);
                 }
@@ -56,10 +57,11 @@ namespace WindowsFormsApplication3
                     MessageBoxForm.Show("Blogi failo duomenys");
                 }
                 catch (ArgumentNullException) { }
-                //finally
-                //{
+                finally
+                {
+                    GetData();
                    // Monitor.Exit(f1.cm.Productsdatabase);
-                //}
+                }
             });
             thread.Start();
         }

@@ -6,7 +6,7 @@ Balzamas "Þalios devynerios"/22345678/700/6,79/1/1
 Gaivusis gërimas "Sprite"/32345678/800/1,45/2/2
 Brendis "Stock 84" 0,7/42345678/800/7,69/1/1
 Gaivusis gërimas "Pepsi" 1/4234567890123/1200/0,50/2/2
-Ðiukðliø maiðai/52345678/198/0/0
+Ðiukðliø maiðai/52345678/198/2/0/0
 Pienas "Piemenëlis"/5234567890123/1100/0,79/5/0
 Obuolys/62345678/75/0,25/3/0
 Morka/6234567890123/50/0,3/4/0

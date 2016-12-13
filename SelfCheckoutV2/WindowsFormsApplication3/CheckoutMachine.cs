@@ -215,6 +215,7 @@ namespace WindowsFormsApplication3
         public void readProductData(string path)
         {
             FileReader fr = new FileReader();
+            fr.ReadData(this, path);
             //Thread thread = new Thread(() => Productsdatabase.Read<Product>(fr, path));
             //thread.Start();
         }
