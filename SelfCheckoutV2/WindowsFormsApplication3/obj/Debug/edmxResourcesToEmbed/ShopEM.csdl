@@ -5,8 +5,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
-    <Property Name="Tipas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Bankas" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Tipas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Bankas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Slaptažodžio_salt" Type="String" MaxLength="24" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="Slaptažodžio_hash" Type="String" MaxLength="44" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Pirkimas" Relationship="Self.FK__Pirkimas__Mokeji__3A81B327" FromRole="Mokejimo_kortele" ToRole="Pirkimas" />

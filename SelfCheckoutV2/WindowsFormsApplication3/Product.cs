@@ -20,9 +20,8 @@ namespace WindowsFormsApplication3
     public enum Attributes
     {
         None = 0,
-        Drink = 1,
-        PaidTare = 2,
-        Alcohol = 4
+        NeedsApproval = 1,
+        PaidTare = 2
     };
     struct Product : IComparable, IEquatable<Product>, ICloneable
     {
@@ -68,14 +67,14 @@ namespace WindowsFormsApplication3
         {
             return new Product(Pname, Barcode, Weight, Price, Pcategory, Pattributes);
         }
-        public object CloneWithDiscount(int discountPercentage)
-        {
-            if (!Pattributes.HasFlag(Attributes.HaveDiscount))
-            {
-                return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pcategory, Pattributes | Attributes.HaveDiscount);
-            }
-            else return this;
-        }
+        //public object CloneWithDiscount(int discountPercentage)
+        //{
+        //    if (!Pattributes.HasFlag(Attributes.HaveDiscount))
+        //    {
+        //        return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pcategory, Pattributes | Attributes.HaveDiscount);
+        //    }
+        //    else return this;
+        //}
         public void AddAttribute(Attributes at)
         {
             Pattributes = Pattributes | at;

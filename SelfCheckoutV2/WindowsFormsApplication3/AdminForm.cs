@@ -22,6 +22,7 @@ namespace WindowsFormsApplication3
         ClientForm f2;
         CameraScanForm csf;
         public CreditCardsForm ccf;
+        public PurchasesForm pf;
         public AdminForm(CheckoutForm f1, ClientForm f2)
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace WindowsFormsApplication3
                 f1.Close();
             };
             // 2 skaičiai po kablelio
-            gridProducts.Columns[1].DefaultCellStyle.Format = "N2";
 
             comboCategories.DataSource = Enum.GetNames(typeof(Category));
             comboCategories.SelectedIndex = 0;
@@ -138,7 +138,7 @@ namespace WindowsFormsApplication3
             using (var context = new ShopDBEntities1())
             {
                 var productList = context.Preke.Where(x => (Category)x.Kategorija == cat).ToList();
-                productList.ForEach(x => x.Kaina = x.Kaina * mult);
+                productList.ForEach(x => x.Kaina = Math.Round(x.Kaina * mult, 2));
                 context.SaveChanges();
             }
             GetData();
@@ -177,6 +177,9 @@ namespace WindowsFormsApplication3
             this.GetData();
             comboCategories.DataSource = Enum.GetNames(typeof(Category));
             comboCategories.SelectedIndex = 0;
+
+            gridProducts.Columns.Add("Kategorijaa", "Kategorija");
+      
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -203,6 +206,24 @@ namespace WindowsFormsApplication3
         {
             ccf = new CreditCardsForm(f1, f2, this);
             ccf.ShowDialog();
+        }
+
+        private void buttonPurchases_Click(object sender, EventArgs e)
+        {
+            pf = new PurchasesForm(f1, f2, this);
+            pf.ShowDialog();
+        }
+
+        private void gridProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (gridProducts.Columns[e.ColumnIndex].Name == "kategorijaDataGridViewTextBoxColumn")
+            {
+                e.Value = (Category)e.Value;
+            }
+            if (gridProducts.Columns[e.ColumnIndex].Name == "atributaiDataGridViewTextBoxColumn")
+            {
+                e.Value = (Attributes)e.Value;
+            }
         }
     }
 }

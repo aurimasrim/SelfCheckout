@@ -5,8 +5,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="varchar" MaxLength="16" Nullable="false" />
-    <Property Name="Tipas" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Bankas" Type="nchar" MaxLength="10" />
+    <Property Name="Tipas" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Bankas" Type="varchar" MaxLength="20" />
     <Property Name="Slaptažodžio_salt" Type="char" MaxLength="24" Nullable="false" />
     <Property Name="Slaptažodžio_hash" Type="char" MaxLength="44" Nullable="false" />
     <Property Name="likutis" Type="float" Nullable="false" />
@@ -86,8 +86,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pirkimo_p__Preke__0A688BB1">
-    <End Role="Preke" Type="Self.Preke" Multiplicity="1" />
+  <Association Name="FK__Pirkimo_p__Preke__6B79F03D">
+    <End Role="Preke" Type="Self.Preke" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Preke">
@@ -116,7 +118,7 @@
       <End Role="Pirkimas" EntitySet="Pirkimas" />
       <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pirkimo_p__Preke__0A688BB1" Association="Self.FK__Pirkimo_p__Preke__0A688BB1">
+    <AssociationSet Name="FK__Pirkimo_p__Preke__6B79F03D" Association="Self.FK__Pirkimo_p__Preke__6B79F03D">
       <End Role="Preke" EntitySet="Preke" />
       <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
     </AssociationSet>

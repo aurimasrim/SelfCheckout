@@ -42,7 +42,7 @@ namespace WindowsFormsApplication3
             textBoxBarcode.Text = Barcode;
             
             checkBoxPaidTare.Tag = Attributes.PaidTare;
-            checkBoxAlcohol.Tag = Attributes.Alcohol;
+            checkBoxAlcohol.Tag = Attributes.NeedsApproval;
 
             checkBoxPaidTare.CheckedChanged += enumCheckedChanged;
             checkBoxAlcohol.CheckedChanged += enumCheckedChanged;

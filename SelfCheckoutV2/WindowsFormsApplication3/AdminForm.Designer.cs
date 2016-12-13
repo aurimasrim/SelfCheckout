@@ -58,6 +58,7 @@
             this.prekeTableAdapter = new WindowsFormsApplication3.PrekeDataSetTableAdapters.PrekeTableAdapter();
             this.buttonRefresh = new EnhancedGlassButton.GlassButton();
             this.buttonCreditCards = new EnhancedGlassButton.GlassButton();
+            this.buttonPurchases = new EnhancedGlassButton.GlassButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeDataSet)).BeginInit();
@@ -181,6 +182,7 @@
             this.gridProducts.Size = new System.Drawing.Size(690, 205);
             this.gridProducts.TabIndex = 31;
             this.gridProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProducts_CellContentClick);
+            this.gridProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridProducts_CellFormatting);
             // 
             // barkodasDataGridViewTextBoxColumn
             // 
@@ -383,6 +385,20 @@
             this.buttonCreditCards.Text = "Mokėjimo kortelės";
             this.buttonCreditCards.Click += new System.EventHandler(this.buttonCreditCards_Click);
             // 
+            // buttonPurchases
+            // 
+            this.buttonPurchases.AnimateGlow = true;
+            this.buttonPurchases.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.buttonPurchases.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonPurchases.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonPurchases.InnerBorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonPurchases.Location = new System.Drawing.Point(133, 417);
+            this.buttonPurchases.Name = "buttonPurchases";
+            this.buttonPurchases.Size = new System.Drawing.Size(102, 35);
+            this.buttonPurchases.TabIndex = 43;
+            this.buttonPurchases.Text = "Pirkimai";
+            this.buttonPurchases.Click += new System.EventHandler(this.buttonPurchases_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +407,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(731, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonPurchases);
             this.Controls.Add(this.buttonCreditCards);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonAddProduct);
@@ -456,5 +473,6 @@
         private PrekeDataSetTableAdapters.PrekeTableAdapter prekeTableAdapter;
         private PrekeDataSet prekeDataSet;
         private EnhancedGlassButton.GlassButton buttonCreditCards;
+        private EnhancedGlassButton.GlassButton buttonPurchases;
     }
 }

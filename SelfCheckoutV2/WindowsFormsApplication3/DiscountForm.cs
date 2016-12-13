@@ -30,7 +30,7 @@ namespace WindowsFormsApplication3
             using (var context = new ShopDBEntities1())
             {
                 var product = context.Preke.ToList()[RowIndex];
-                product.Kaina = product.Kaina * mult;
+                product.Kaina = Math.Round((double)product.Kaina * mult, 2);
                 context.SaveChanges();
             }
             af.GetData();

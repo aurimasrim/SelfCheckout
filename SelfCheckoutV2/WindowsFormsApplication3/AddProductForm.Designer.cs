@@ -78,7 +78,7 @@
             this.buttonOk.Location = new System.Drawing.Point(184, 330);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(89, 35);
-            this.buttonOk.TabIndex = 28;
+            this.buttonOk.TabIndex = 9;
             this.buttonOk.Text = "Gerai";
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -93,7 +93,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(12, 330);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(89, 35);
-            this.buttonCancel.TabIndex = 29;
+            this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "Atšaukti";
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
@@ -148,7 +148,7 @@
             this.textBoxPrice.MaxLength = 8;
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(233, 20);
-            this.textBoxPrice.TabIndex = 34;
+            this.textBoxPrice.TabIndex = 2;
             this.textBoxPrice.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxPrice_Validating);
             this.textBoxPrice.Validated += new System.EventHandler(this.textBoxPrice_Validated);
             // 
@@ -159,7 +159,7 @@
             this.textBoxWeight.MaxLength = 7;
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(233, 20);
-            this.textBoxWeight.TabIndex = 35;
+            this.textBoxWeight.TabIndex = 3;
             this.textBoxWeight.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxWeight_Validating);
             this.textBoxWeight.Validated += new System.EventHandler(this.textBoxWeight_Validated);
             // 
@@ -170,7 +170,7 @@
             this.textBoxBarcode.MaxLength = 13;
             this.textBoxBarcode.Name = "textBoxBarcode";
             this.textBoxBarcode.Size = new System.Drawing.Size(233, 20);
-            this.textBoxBarcode.TabIndex = 37;
+            this.textBoxBarcode.TabIndex = 4;
             this.textBoxBarcode.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxBarcode_Validating);
             this.textBoxBarcode.Validated += new System.EventHandler(this.textBoxBarcode_Validated);
             // 
@@ -192,7 +192,7 @@
             this.checkBoxPaidTare.Location = new System.Drawing.Point(57, 298);
             this.checkBoxPaidTare.Name = "checkBoxPaidTare";
             this.checkBoxPaidTare.Size = new System.Drawing.Size(88, 17);
-            this.checkBoxPaidTare.TabIndex = 41;
+            this.checkBoxPaidTare.TabIndex = 6;
             this.checkBoxPaidTare.Text = "Mokama tara";
             this.checkBoxPaidTare.UseVisualStyleBackColor = false;
             // 
@@ -202,9 +202,9 @@
             this.checkBoxAlcohol.BackColor = System.Drawing.Color.Transparent;
             this.checkBoxAlcohol.Location = new System.Drawing.Point(168, 298);
             this.checkBoxAlcohol.Name = "checkBoxAlcohol";
-            this.checkBoxAlcohol.Size = new System.Drawing.Size(76, 17);
-            this.checkBoxAlcohol.TabIndex = 42;
-            this.checkBoxAlcohol.Text = "Alkoholinis";
+            this.checkBoxAlcohol.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxAlcohol.TabIndex = 7;
+            this.checkBoxAlcohol.Text = "Reikia 18";
             this.checkBoxAlcohol.UseVisualStyleBackColor = false;
             // 
             // comboCategories
@@ -216,7 +216,7 @@
             this.comboCategories.Location = new System.Drawing.Point(40, 239);
             this.comboCategories.Name = "comboCategories";
             this.comboCategories.Size = new System.Drawing.Size(131, 21);
-            this.comboCategories.TabIndex = 46;
+            this.comboCategories.TabIndex = 5;
             // 
             // label6
             // 

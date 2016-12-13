@@ -108,6 +108,17 @@
     <Compile Include="AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="purchasesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>purchasesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchasesForm.Designer.cs">
+      <DependentUpon>PurchasesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreditCardsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +247,10 @@
       <DependentUpon>AddProductForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="PurchasesForm.resx">
+      <DependentUpon>PurchasesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreditCardsForm.resx">
       <DependentUpon>CreditCardsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -310,6 +325,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ShopEM.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="purchasesDataSet.xsc">
+      <DependentUpon>purchasesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="purchasesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>purchasesDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="purchasesDataSet.xss">
+      <DependentUpon>purchasesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ShopDBDataSet.xsc">
       <DependentUpon>ShopDBDataSet.xsd</DependentUpon>
     </None>

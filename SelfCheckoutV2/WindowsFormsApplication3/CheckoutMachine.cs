@@ -123,7 +123,7 @@ namespace WindowsFormsApplication3
                 }
                 Product item = new Product(dt.Rows[0][1].ToString(), dt.Rows[0][0].ToString(), (int)dt.Rows[0][3], (double)dt.Rows[0][2], (Category)(int)dt.Rows[0][4], (Attributes)(int)dt.Rows[0][5]);
                 Scannedproductsarray.Add(item);
-                if ((item.Pattributes.HasFlag(Attributes.Alcohol))) needsApproval = true;
+                if ((item.Pattributes.HasFlag(Attributes.NeedsApproval))) needsApproval = true;
                 if (item.Pattributes.HasFlag(Attributes.PaidTare))
                     addTare();
                 scannedProductsWeight += item.Weight;
