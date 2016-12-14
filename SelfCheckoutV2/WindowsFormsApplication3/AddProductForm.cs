@@ -59,9 +59,12 @@ namespace WindowsFormsApplication3
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            f1.cm.addProductToDatabase(new Product(textBoxName.Text, textBoxBarcode.Text, int.Parse(textBoxWeight.Text), float.Parse(textBoxPrice.Text), (Category)comboCategories.SelectedIndex, attributes));
-
-            f3.GetData();
+            if(!f1.cm.databaseContainsProduct(textBoxBarcode.Text))
+            {
+                f1.cm.addProductToDatabase(new Product(textBoxName.Text, textBoxBarcode.Text, int.Parse(textBoxWeight.Text), float.Parse(textBoxPrice.Text), (Category)comboCategories.SelectedIndex, attributes));
+                f3.GetData();
+            }
+            
             this.Close();
         }
 

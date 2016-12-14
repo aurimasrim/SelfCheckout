@@ -91,6 +91,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CameraScanForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CameraScanForm_FormClosed);
             this.Load += new System.EventHandler(this.CameraScanForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.CameraScanForm_VisibleChanged);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CameraScan_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CameraScan_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CameraScan_MouseUp);

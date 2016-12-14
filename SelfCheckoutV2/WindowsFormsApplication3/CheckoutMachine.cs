@@ -302,20 +302,50 @@ namespace WindowsFormsApplication3
                 else return false;
             }
         }
+        public void updateProductInDatabase(Product product)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                Preke pr = context.Preke.SingleOrDefault(x => x.Barkodas == product.Barcode);
+                pr.Barkodas = product.Barcode;
+                pr.Kaina = product.Price;
+                pr.Svoris = product.Weight;
+                pr.Pavadinimas = product.Pname;
+                pr.Kategorija = (int)product.Pcategory;
+                pr.Atributai = (int)product.Pattributes;
+                //context.Preke.Add(new Preke()
+                //{
+                //    Id = card.Number,
+                //    Bankas = card.BankName,
+                //    Tipas = card.Type,
+                //    Slaptažodžio_hash = card.PasswordHash,
+                //    Slaptažodžio_salt = card.PasswordSalt,
+                //    Likutis = card.Balance
+                //});
+                context.ChangeTracker.DetectChanges();
+                context.SaveChanges();
+            }
+        }
         public void addCreditCardToDatabase(CreditCard card)
         {
             using (var context = new ShopDBEntities1())
             {
-                context.Mokejimo_kortele.Add(new Mokejimo_kortele() {
+                Mokejimo_kortele mk = new Mokejimo_kortele()
+                {
                     Id = card.Number,
                     Bankas = card.BankName,
                     Tipas = card.Type,
                     Slaptažodžio_hash = card.PasswordHash,
                     Slaptažodžio_salt = card.PasswordSalt,
                     Likutis = card.Balance
-                });
+                };
+                if (context.Mokejimo_kortele.Any(x => x.Id == mk.Id)) return;
+            
+                context.Mokejimo_kortele.Add(mk);
                 context.ChangeTracker.DetectChanges();
                 context.SaveChanges();
+                
+                
             }
         }
         public void removeCreditCardFromDatabase(string id)

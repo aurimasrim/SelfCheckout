@@ -169,6 +169,7 @@
             this.gridProducts.GridColor = System.Drawing.Color.DarkCyan;
             this.gridProducts.Location = new System.Drawing.Point(24, 124);
             this.gridProducts.Name = "gridProducts";
+            this.gridProducts.ReadOnly = true;
             this.gridProducts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.gridProducts.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -189,41 +190,48 @@
             this.barkodasDataGridViewTextBoxColumn.DataPropertyName = "Barkodas";
             this.barkodasDataGridViewTextBoxColumn.HeaderText = "Barkodas";
             this.barkodasDataGridViewTextBoxColumn.Name = "barkodasDataGridViewTextBoxColumn";
+            this.barkodasDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // pavadinimasDataGridViewTextBoxColumn
             // 
             this.pavadinimasDataGridViewTextBoxColumn.DataPropertyName = "Pavadinimas";
             this.pavadinimasDataGridViewTextBoxColumn.HeaderText = "Pavadinimas";
             this.pavadinimasDataGridViewTextBoxColumn.Name = "pavadinimasDataGridViewTextBoxColumn";
+            this.pavadinimasDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // kainaDataGridViewTextBoxColumn
             // 
             this.kainaDataGridViewTextBoxColumn.DataPropertyName = "Kaina";
             this.kainaDataGridViewTextBoxColumn.HeaderText = "Kaina";
             this.kainaDataGridViewTextBoxColumn.Name = "kainaDataGridViewTextBoxColumn";
+            this.kainaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // svorisDataGridViewTextBoxColumn
             // 
             this.svorisDataGridViewTextBoxColumn.DataPropertyName = "Svoris";
             this.svorisDataGridViewTextBoxColumn.HeaderText = "Svoris";
             this.svorisDataGridViewTextBoxColumn.Name = "svorisDataGridViewTextBoxColumn";
+            this.svorisDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // kategorijaDataGridViewTextBoxColumn
             // 
             this.kategorijaDataGridViewTextBoxColumn.DataPropertyName = "Kategorija";
             this.kategorijaDataGridViewTextBoxColumn.HeaderText = "Kategorija";
             this.kategorijaDataGridViewTextBoxColumn.Name = "kategorijaDataGridViewTextBoxColumn";
+            this.kategorijaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // atributaiDataGridViewTextBoxColumn
             // 
             this.atributaiDataGridViewTextBoxColumn.DataPropertyName = "Atributai";
             this.atributaiDataGridViewTextBoxColumn.HeaderText = "Atributai";
             this.atributaiDataGridViewTextBoxColumn.Name = "atributaiDataGridViewTextBoxColumn";
+            this.atributaiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // makeDiscount
             // 
             this.makeDiscount.HeaderText = "Padaryti nuolaidą";
             this.makeDiscount.Name = "makeDiscount";
+            this.makeDiscount.ReadOnly = true;
             this.makeDiscount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.makeDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.makeDiscount.Text = "Nuolaida";
@@ -234,6 +242,7 @@
             // 
             this.removeProduct.HeaderText = "Pašalinti";
             this.removeProduct.Name = "removeProduct";
+            this.removeProduct.ReadOnly = true;
             this.removeProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.removeProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.removeProduct.Text = "Pašalinti";
@@ -368,7 +377,7 @@
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(89, 35);
             this.buttonRefresh.TabIndex = 41;
-            this.buttonRefresh.Text = "Refresh kurva";
+            this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // buttonCreditCards

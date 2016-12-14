@@ -28,6 +28,7 @@ namespace WindowsFormsApplication3
         public ClientForm testingWindow;
         public AdminForm adminWindow;
         HelpForm helpForm;
+        CameraScanForm csf;
         public CheckoutForm()
         {
             InitializeComponent();
@@ -49,6 +50,8 @@ namespace WindowsFormsApplication3
             
             helpForm = new HelpForm(this, testingWindow, adminWindow);
             helpForm.Show();
+
+            csf = new CameraScanForm(this, testingWindow, false);
 
             // 2 skaičiai po kablelio
             gridScannedProducts.Columns[1].DefaultCellStyle.Format = "N2";
@@ -201,8 +204,10 @@ namespace WindowsFormsApplication3
 
         private void buttonScanWithCamera_Click(object sender, EventArgs e)
         {
-            CameraScanForm csf = new CameraScanForm(this, testingWindow, false);
-            csf.ShowDialog();
+            if (!csf.Visible)
+            {
+                csf.Show();
+            }
         }
     }
     

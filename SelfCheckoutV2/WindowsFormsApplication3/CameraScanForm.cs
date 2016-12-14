@@ -209,7 +209,27 @@ namespace WindowsFormsApplication3
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (ForAdding)
+                this.Close();
+            else
+            {
+                if (videoSource.IsRunning)
+                {
+                    videoSource.Stop();
+                }
+                this.Hide();
+            }
+        }
+
+        private void CameraScanForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if(Visible)
+            {
+                if (!videoSource.IsRunning)
+                {
+                    videoSource.Start();
+                }
+            }
         }
     }
 }
