@@ -136,7 +136,8 @@ namespace WindowsFormsApplication3
         {
             
             Category cat = (Category)comboCategories.SelectedIndex;
-            double mult = 1 - double.Parse(textBoxDiscount.Text) / 100;
+            double mult = 1 - (double.Parse(textBoxDiscount.Text) / 100);
+            //MessageBoxForm.Show(mult.ToString());
             using (var context = new ShopDBEntities1())
             {
                 var productList = context.Preke.Where(x => (Category)x.Kategorija == cat).ToList();

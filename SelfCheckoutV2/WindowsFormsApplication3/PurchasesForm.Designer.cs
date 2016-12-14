@@ -44,7 +44,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label1.Location = new System.Drawing.Point(170, 9);
+            this.label1.Location = new System.Drawing.Point(254, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 2;
@@ -57,7 +57,7 @@
             this.buttonCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonCancel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.buttonCancel.InnerBorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonCancel.Location = new System.Drawing.Point(15, 227);
+            this.buttonCancel.Location = new System.Drawing.Point(245, 227);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(89, 35);
             this.buttonCancel.TabIndex = 29;
@@ -98,7 +98,7 @@
             this.gridPurchases.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.gridPurchases.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.gridPurchases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridPurchases.Size = new System.Drawing.Size(377, 144);
+            this.gridPurchases.Size = new System.Drawing.Size(545, 144);
             this.gridPurchases.TabIndex = 32;
             this.gridPurchases.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCards_CellContentClick);
             // 
@@ -107,7 +107,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication3.Properties.Resources.mosaic_background_1;
-            this.ClientSize = new System.Drawing.Size(414, 274);
+            this.ClientSize = new System.Drawing.Size(569, 274);
             this.ControlBox = false;
             this.Controls.Add(this.gridPurchases);
             this.Controls.Add(this.buttonCancel);

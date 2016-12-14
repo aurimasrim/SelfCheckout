@@ -367,6 +367,7 @@ namespace WindowsFormsApplication3
             }
             addPurchaseToDatabase();
         }
+        
         public void addPurchaseToDatabase()
         {
             using (var context = new ShopDBEntities1())
