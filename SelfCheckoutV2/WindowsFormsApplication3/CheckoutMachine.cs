@@ -367,7 +367,23 @@ namespace WindowsFormsApplication3
             }
             addPurchaseToDatabase();
         }
-        
+        public void addDiscountCard(Nuolaidu_kortele card)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                context.Nuolaidu_kortele.Add(card);
+                context.SaveChanges();
+            }
+        }
+        public void removeDiscountCard(string id)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                var cardToRemove = context.Nuolaidu_kortele.SingleOrDefault(x => x.ID == id);
+                context.Nuolaidu_kortele.Remove(cardToRemove);
+                context.SaveChanges();
+            }
+        }
         public void addPurchaseToDatabase()
         {
             using (var context = new ShopDBEntities1())

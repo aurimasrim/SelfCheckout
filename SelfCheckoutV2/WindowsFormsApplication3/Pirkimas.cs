@@ -22,7 +22,7 @@ namespace WindowsFormsApplication3
     
         public int Id { get; set; }
         public System.DateTime Data { get; set; }
-        public Nullable<int> Nuolaidu_kortele { get; set; }
+        public string Nuolaidu_kortele { get; set; }
         public string Apmokejimo_tipas { get; set; }
         public string Mokejimo_kortele { get; set; }
     
