@@ -204,10 +204,8 @@ namespace WindowsFormsApplication3
 
         private void buttonScanWithCamera_Click(object sender, EventArgs e)
         {
-            if (!csf.Visible)
-            {
+            csf = new CameraScanForm(this, testingWindow, false);
                 csf.Show();
-            }
         }
     }
     

@@ -21,7 +21,8 @@ namespace WindowsFormsApplication3
     {
         None = 0,
         NeedsApproval = 1,
-        PaidTare = 2
+        PaidTare = 2,
+        HaveCardDiscount = 4
     };
     struct Product : IComparable, IEquatable<Product>, ICloneable
     {
@@ -34,7 +35,7 @@ namespace WindowsFormsApplication3
             get { return new Product("Maišelis", "00000000", 10, (double)0.15, Category.Kita); }
         }
         public string Pname { get; }
-        public double Price { get; }
+        public double Price { get; set; }
         public int Weight { get; }
         public string Barcode { get; }
         public Category Pcategory { get; set; }
@@ -67,14 +68,10 @@ namespace WindowsFormsApplication3
         {
             return new Product(Pname, Barcode, Weight, Price, Pcategory, Pattributes);
         }
-        //public object CloneWithDiscount(int discountPercentage)
-        //{
-        //    if (!Pattributes.HasFlag(Attributes.HaveDiscount))
-        //    {
-        //        return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pcategory, Pattributes | Attributes.HaveDiscount);
-        //    }
-        //    else return this;
-        //}
+        public object CloneWithDiscount(int discountPercentage)
+        {
+            return new Product(Pname, Barcode, Weight, Math.Round(Price - (Price * discountPercentage / 100), 2), Pcategory, Pattributes | Attributes.HaveCardDiscount);
+        }
         public void AddAttribute(Attributes at)
         {
             Pattributes = Pattributes | at;

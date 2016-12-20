@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShopDBModelStoreContainer" CdmEntityContainer="ShopDBEntities1">
+    <EntitySetMapping Name="Mokejimo_kortele">
+      <EntityTypeMapping TypeName="ShopDBModel.Mokejimo_kortele">
+        <MappingFragment StoreEntitySet="Mokejimo_kortele">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tipas" ColumnName="Tipas" />
+          <ScalarProperty Name="Bankas" ColumnName="Bankas" />
+          <ScalarProperty Name="Slaptažodžio_salt" ColumnName="Slaptažodžio_salt" />
+          <ScalarProperty Name="Slaptažodžio_hash" ColumnName="Slaptažodžio_hash" />
+          <ScalarProperty Name="likutis" ColumnName="likutis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nuolaidu_kortele">
+      <EntityTypeMapping TypeName="ShopDBModel.Nuolaidu_kortele">
+        <MappingFragment StoreEntitySet="Nuolaidu_kortele">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Savininko_vardas" ColumnName="Savininko_vardas" />
+          <ScalarProperty Name="Savininko_pavarde" ColumnName="Savininko_pavarde" />
+          <ScalarProperty Name="Savininko_elpastas" ColumnName="Savininko_elpastas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pirkimas">
+      <EntityTypeMapping TypeName="ShopDBModel.Pirkimas">
+        <MappingFragment StoreEntitySet="Pirkimas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Nuolaidu_kortele" ColumnName="Nuolaidu_kortele" />
+          <ScalarProperty Name="Apmokejimo_tipas" ColumnName="Apmokejimo_tipas" />
+          <ScalarProperty Name="Mokejimo_kortele" ColumnName="Mokejimo_kortele" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pirkimo_prekes">
+      <EntityTypeMapping TypeName="ShopDBModel.Pirkimo_prekes">
+        <MappingFragment StoreEntitySet="Pirkimo_prekes">
+          <ScalarProperty Name="Preke" ColumnName="Preke" />
+          <ScalarProperty Name="Pirkimas" ColumnName="Pirkimas" />
+          <ScalarProperty Name="Kiekis" ColumnName="Kiekis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Preke">
+      <EntityTypeMapping TypeName="ShopDBModel.Preke">
+        <MappingFragment StoreEntitySet="Preke">
+          <ScalarProperty Name="Barkodas" ColumnName="Barkodas" />
+          <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
+          <ScalarProperty Name="Kaina" ColumnName="Kaina" />
+          <ScalarProperty Name="Svoris" ColumnName="Svoris" />
+          <ScalarProperty Name="Kategorija" ColumnName="Kategorija" />
+          <ScalarProperty Name="Atributai" ColumnName="Atributai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

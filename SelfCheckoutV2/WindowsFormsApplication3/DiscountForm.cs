@@ -32,6 +32,7 @@ namespace WindowsFormsApplication3
                 var product = context.Preke.ToList()[RowIndex];
                 product.Kaina = Math.Round((double)product.Kaina * mult, 2);
                 context.SaveChanges();
+                af.SendAds(product.Pavadinimas);
             }
             af.GetData();
             this.Close();

@@ -42,6 +42,7 @@ namespace WindowsFormsApplication3
         private int productsWeight;
         private PayingMethod payingMethod;
         private CreditCard payingCard = null;
+        public Nuolaidu_kortele discountCard = null;
         public bool scannerOn = true;
         private double priceToPay = 0;
         public bool needsApproval = false;
@@ -122,6 +123,8 @@ namespace WindowsFormsApplication3
                     throw new EntryPointNotFoundException();
                 }
                 Product item = new Product(dt.Rows[0][1].ToString(), dt.Rows[0][0].ToString(), (int)dt.Rows[0][3], (double)dt.Rows[0][2], (Category)(int)dt.Rows[0][4], (Attributes)(int)dt.Rows[0][5]);
+                if (discountCard != null)
+                    item = (Product)item.CloneWithDiscount(10);
                 Scannedproductsarray.Add(item);
                 if ((item.Pattributes.HasFlag(Attributes.NeedsApproval))) needsApproval = true;
                 if (item.Pattributes.HasFlag(Attributes.PaidTare))
@@ -367,19 +370,22 @@ namespace WindowsFormsApplication3
             }
             addPurchaseToDatabase();
         }
-        public void addDiscountCard(Nuolaidu_kortele card)
+        public bool addDiscountCard(Nuolaidu_kortele card)
         {
             using (var context = new ShopDBEntities1())
             {
+                if (context.Nuolaidu_kortele.Any(x => x.Id == card.Id))
+                    return false;
                 context.Nuolaidu_kortele.Add(card);
                 context.SaveChanges();
             }
+            return true;
         }
         public void removeDiscountCard(string id)
         {
             using (var context = new ShopDBEntities1())
             {
-                var cardToRemove = context.Nuolaidu_kortele.SingleOrDefault(x => x.ID == id);
+                var cardToRemove = context.Nuolaidu_kortele.SingleOrDefault(x => x.Id == id);
                 context.Nuolaidu_kortele.Remove(cardToRemove);
                 context.SaveChanges();
             }
@@ -392,12 +398,14 @@ namespace WindowsFormsApplication3
                 if (payingMethod == PayingMethod.Cash)
                 {
                     pirkimas.Apmokejimo_tipas = "Grynais";
+                    pirkimas.Data = DateTime.Now;
                     context.Pirkimas.Add(pirkimas);
                 }
                 else 
                 {
                     pirkimas.Apmokejimo_tipas = "Kortele";
                     pirkimas.Mokejimo_kortele = PayingCard.Number;
+                    pirkimas.Data = DateTime.Now;
                     context.Pirkimas.Add(pirkimas);
                 }
                 context.SaveChanges();
@@ -419,6 +427,33 @@ namespace WindowsFormsApplication3
                 context.ChangeTracker.DetectChanges();
                 context.SaveChanges();
             }
+        }
+        public bool insertDiscountCard(string barcode)
+        {
+            using (var context = new ShopDBEntities1())
+            {
+                var card = context.Nuolaidu_kortele.SingleOrDefault(x => x.Id == barcode);
+                if (card == null)
+                    return false;
+                else
+                {
+                    discountCard = new Nuolaidu_kortele() { Id = card.Id, Savininko_elpastas = card.Savininko_elpastas, Savininko_pavarde = card.Savininko_pavarde, Savininko_vardas = card.Savininko_vardas };
+                }
+                
+            }
+            int size = Scannedproductsarray.getSize();
+            for(int i = 0; i < size; i++)
+            {
+                if (!Scannedproductsarray[i].Pattributes.HasFlag(Attributes.HaveCardDiscount))
+                {
+                    if (Scannedproductsarray[i].Pname != "Butelio tara")
+                    {
+                        Scannedproductsarray.Array[i] = (Product)Scannedproductsarray.Array[i].CloneWithDiscount(10);
+                    }
+                }
+            }
+            return true;
+
         }
     }
     [Serializable]

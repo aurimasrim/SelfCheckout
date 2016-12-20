@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Mokejimo_kortele">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tipas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Bankas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Slaptažodžio_salt" Type="String" MaxLength="24" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Slaptažodžio_hash" Type="String" MaxLength="44" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="likutis" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Pirkimas" Relationship="Self.FK__Pirkimas__Mokeji__45544755" FromRole="Mokejimo_kortele" ToRole="Pirkimas" />
+  </EntityType>
+  <EntityType Name="Nuolaidu_kortele">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Savininko_vardas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Savininko_pavarde" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Savininko_elpastas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pirkimas" Relationship="Self.FK__Pirkimas__Nuolai__00750D23" FromRole="Nuolaidu_kortele" ToRole="Pirkimas" />
+  </EntityType>
+  <EntityType Name="Pirkimas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Nuolaidu_kortele" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Apmokejimo_tipas" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mokejimo_kortele" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Mokejimo_kortele1" Relationship="Self.FK__Pirkimas__Mokeji__45544755" FromRole="Pirkimas" ToRole="Mokejimo_kortele" />
+    <NavigationProperty Name="Nuolaidu_kortele1" Relationship="Self.FK__Pirkimas__Nuolai__00750D23" FromRole="Pirkimas" ToRole="Nuolaidu_kortele" />
+    <NavigationProperty Name="Pirkimo_prekes" Relationship="Self.FK__Pirkimo_p__Pirki__2116E6DF" FromRole="Pirkimas" ToRole="Pirkimo_prekes" />
+  </EntityType>
+  <EntityType Name="Pirkimo_prekes">
+    <Key>
+      <PropertyRef Name="Preke" />
+      <PropertyRef Name="Pirkimas" />
+    </Key>
+    <Property Name="Preke" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pirkimas" Type="Int32" Nullable="false" />
+    <Property Name="Kiekis" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pirkimas1" Relationship="Self.FK__Pirkimo_p__Pirki__2116E6DF" FromRole="Pirkimo_prekes" ToRole="Pirkimas" />
+    <NavigationProperty Name="Preke1" Relationship="Self.FK__Pirkimo_p__Preke__6B79F03D" FromRole="Pirkimo_prekes" ToRole="Preke" />
+  </EntityType>
+  <EntityType Name="Preke">
+    <Key>
+      <PropertyRef Name="Barkodas" />
+    </Key>
+    <Property Name="Barkodas" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pavadinimas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Kaina" Type="Double" Nullable="false" />
+    <Property Name="Svoris" Type="Int32" Nullable="false" />
+    <Property Name="Kategorija" Type="Int32" Nullable="false" />
+    <Property Name="Atributai" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pirkimo_prekes" Relationship="Self.FK__Pirkimo_p__Preke__6B79F03D" FromRole="Preke" ToRole="Pirkimo_prekes" />
+  </EntityType>
+  <Association Name="FK__Pirkimas__Mokeji__45544755">
+    <End Role="Mokejimo_kortele" Type="Self.Mokejimo_kortele" Multiplicity="0..1" />
+    <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mokejimo_kortele">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pirkimas">
+        <PropertyRef Name="Mokejimo_kortele" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pirkimas__Nuolai__00750D23">
+    <End Role="Nuolaidu_kortele" Type="Self.Nuolaidu_kortele" Multiplicity="0..1" />
+    <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nuolaidu_kortele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pirkimas">
+        <PropertyRef Name="Nuolaidu_kortele" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pirkimo_p__Pirki__2116E6DF">
+    <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="1" />
+    <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pirkimas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pirkimo_prekes">
+        <PropertyRef Name="Pirkimas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pirkimo_p__Preke__6B79F03D">
+    <End Role="Preke" Type="Self.Preke" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pirkimo_prekes" Type="Self.Pirkimo_prekes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Preke">
+        <PropertyRef Name="Barkodas" />
+      </Principal>
+      <Dependent Role="Pirkimo_prekes">
+        <PropertyRef Name="Preke" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Mokejimo_kortele" EntityType="Self.Mokejimo_kortele" />
+    <EntitySet Name="Nuolaidu_kortele" EntityType="Self.Nuolaidu_kortele" />
+    <EntitySet Name="Pirkimas" EntityType="Self.Pirkimas" />
+    <EntitySet Name="Pirkimo_prekes" EntityType="Self.Pirkimo_prekes" />
+    <EntitySet Name="Preke" EntityType="Self.Preke" />
+    <AssociationSet Name="FK__Pirkimas__Mokeji__45544755" Association="Self.FK__Pirkimas__Mokeji__45544755">
+      <End Role="Mokejimo_kortele" EntitySet="Mokejimo_kortele" />
+      <End Role="Pirkimas" EntitySet="Pirkimas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pirkimas__Nuolai__00750D23" Association="Self.FK__Pirkimas__Nuolai__00750D23">
+      <End Role="Nuolaidu_kortele" EntitySet="Nuolaidu_kortele" />
+      <End Role="Pirkimas" EntitySet="Pirkimas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pirkimo_p__Pirki__2116E6DF" Association="Self.FK__Pirkimo_p__Pirki__2116E6DF">
+      <End Role="Pirkimas" EntitySet="Pirkimas" />
+      <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pirkimo_p__Preke__6B79F03D" Association="Self.FK__Pirkimo_p__Preke__6B79F03D">
+      <End Role="Preke" EntitySet="Preke" />
+      <End Role="Pirkimo_prekes" EntitySet="Pirkimo_prekes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

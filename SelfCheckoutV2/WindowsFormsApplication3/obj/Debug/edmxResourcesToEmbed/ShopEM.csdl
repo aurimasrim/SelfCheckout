@@ -16,7 +16,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="Savininko_vardas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Savininko_pavarde" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Savininko_elpastas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -28,7 +28,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Data" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
-    <Property Name="Nuolaidu_kortele" Type="Int32" />
+    <Property Name="Nuolaidu_kortele" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="Apmokejimo_tipas" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Mokejimo_kortele" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Mokejimo_kortele1" Relationship="Self.FK__Pirkimas__Mokeji__3A81B327" FromRole="Pirkimas" ToRole="Mokejimo_kortele" />

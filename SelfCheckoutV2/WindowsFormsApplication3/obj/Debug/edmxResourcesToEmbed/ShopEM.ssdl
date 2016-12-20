@@ -15,7 +15,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="Savininko_vardas" Type="varchar" MaxLength="50" />
     <Property Name="Savininko_pavarde" Type="varchar" MaxLength="50" />
     <Property Name="Savininko_elpastas" Type="varchar" MaxLength="50" />
@@ -26,7 +26,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Data" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
-    <Property Name="Nuolaidu_kortele" Type="int" />
+    <Property Name="Nuolaidu_kortele" Type="varchar" MaxLength="25" />
     <Property Name="Apmokejimo_tipas" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Mokejimo_kortele" Type="varchar" MaxLength="16" />
   </EntityType>
@@ -62,7 +62,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pirkimas__Nuolai__22FF2F51">
+  <Association Name="FK__Pirkimas__Nuolai__00750D23">
     <End Role="Nuolaidu_kortele" Type="Self.Nuolaidu_kortele" Multiplicity="0..1" />
     <End Role="Pirkimas" Type="Self.Pirkimas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -110,7 +110,7 @@
       <End Role="Mokejimo_kortele" EntitySet="Mokejimo_kortele" />
       <End Role="Pirkimas" EntitySet="Pirkimas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pirkimas__Nuolai__22FF2F51" Association="Self.FK__Pirkimas__Nuolai__22FF2F51">
+    <AssociationSet Name="FK__Pirkimas__Nuolai__00750D23" Association="Self.FK__Pirkimas__Nuolai__00750D23">
       <End Role="Nuolaidu_kortele" EntitySet="Nuolaidu_kortele" />
       <End Role="Pirkimas" EntitySet="Pirkimas" />
     </AssociationSet>

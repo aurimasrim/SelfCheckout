@@ -14,8 +14,8 @@ namespace WindowsFormsApplication3
     
     public partial class Pirkimo_prekes
     {
-        public string Preke { get; set; }
         public int Pirkimas { get; set; }
+        public string Preke { get; set; }
         public int Kiekis { get; set; }
     
         public virtual Pirkimas Pirkimas1 { get; set; }

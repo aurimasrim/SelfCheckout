@@ -147,6 +147,13 @@ namespace WindowsFormsApplication3
                         apf.ShowDialog();
                         this.Close();
                     }
+                    else if (System.Text.RegularExpressions.Regex.IsMatch(barcode, @"^\d+$"))
+                    {
+                        if (f1.cm.addDiscountCard(new Nuolaidu_kortele() { Id = barcode }))
+                            MessageBoxForm.Show("Nuolaidų kortelė pridėta");
+                        else MessageBoxForm.Show("Nuolaidų kortelė tokiu numeriu jau yra");
+                        this.Close();
+                    }
                     else
                     {
                         try
@@ -169,6 +176,16 @@ namespace WindowsFormsApplication3
                     this.Close();
                     new CameraScanForm(f1, f2, false).Show();
 
+                }
+                else if (System.Text.RegularExpressions.Regex.IsMatch(barcode, @"^\d+$"))
+                {
+                    if (f1.cm.insertDiscountCard(barcode))
+                    {
+                        MessageBoxForm.Show("Kortelė sėkmingai įdėta");
+                        f1.bindData();
+                    }
+                    else MessageBoxForm.Show("Kortelė nerasta duomenų bazėje");
+                    this.Close();
                 }
                 else
                 {

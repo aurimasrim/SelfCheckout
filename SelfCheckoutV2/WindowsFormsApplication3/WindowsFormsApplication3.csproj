@@ -108,6 +108,27 @@
     <Compile Include="AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DiscountCardsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiscountCardsForm.Designer.cs">
+      <DependentUpon>DiscountCardsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mokejimo_kortele.cs">
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nuolaidu_kortele.cs">
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pirkimas.cs">
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pirkimo_prekes.cs">
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Preke.cs">
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="purchasesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,12 +189,6 @@
     <Compile Include="HelpForm.Designer.cs">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mokejimo_kortele.cs">
-      <DependentUpon>ShopEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Nuolaidu_kortele.cs">
-      <DependentUpon>ShopEM.tt</DependentUpon>
-    </Compile>
     <Compile Include="PasswordTool.cs" />
     <Compile Include="PayForm.cs">
       <SubType>Form</SubType>
@@ -199,15 +214,6 @@
     <Compile Include="MessageBoxForm.Designer.cs">
       <DependentUpon>MessageBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pirkimas.cs">
-      <DependentUpon>ShopEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pirkimo_prekes.cs">
-      <DependentUpon>ShopEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Preke.cs">
-      <DependentUpon>ShopEM.tt</DependentUpon>
-    </Compile>
     <Compile Include="PrekeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,20 +230,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ShopEM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShopEM.Context.tt</DependentUpon>
+    <Compile Include="ShopDBDataSet1.cs">
+      <DependentUpon>ShopDBDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ShopEM.cs">
+    <Compile Include="ShopDBDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShopEM.tt</DependentUpon>
+      <DependentUpon>ShopDBDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ShopEM.Designer.cs">
+    <Compile Include="ShopDBDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShopEM.edmx</DependentUpon>
+      <DependentUpon>ShopDBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ShopDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDBModel.edmx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddCreditCardForm.resx">
       <DependentUpon>AddCreditCardForm.cs</DependentUpon>
@@ -245,6 +264,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProductForm.resx">
       <DependentUpon>AddProductForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiscountCardsForm.resx">
+      <DependentUpon>DiscountCardsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PurchasesForm.resx">
@@ -321,10 +344,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="ShopEM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShopEM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="purchasesDataSet.xsc">
       <DependentUpon>purchasesDataSet.xsd</DependentUpon>
     </None>
@@ -347,8 +366,34 @@
     <None Include="ShopDBDataSet.xss">
       <DependentUpon>ShopDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="ShopEM.edmx.diagram">
-      <DependentUpon>ShopEM.edmx</DependentUpon>
+    <None Include="ShopDBDataSet1.xsc">
+      <DependentUpon>ShopDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ShopDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShopDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ShopDBDataSet1.xss">
+      <DependentUpon>ShopDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ShopDBDataSet2.xsc">
+      <DependentUpon>ShopDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ShopDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShopDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ShopDBDataSet2.xss">
+      <DependentUpon>ShopDBDataSet2.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="ShopDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShopDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ShopDBModel.edmx.diagram">
+      <DependentUpon>ShopDBModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -360,19 +405,19 @@
     <Content Include="ShopDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ShopDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopDBModel.edmx</DependentUpon>
+      <LastGenOutput>ShopDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ShopDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopDBModel.edmx</DependentUpon>
+      <LastGenOutput>ShopDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="ShopDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ShopDB.mdf</DependentUpon>
-    </Content>
-    <Content Include="ShopEM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShopEM.edmx</DependentUpon>
-      <LastGenOutput>ShopEM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ShopEM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShopEM.edmx</DependentUpon>
-      <LastGenOutput>ShopEM.cs</LastGenOutput>
     </Content>
     <None Include="eurai\newcommon_1euro.gif" />
     <None Include="eurai\common_1cent.gif" />

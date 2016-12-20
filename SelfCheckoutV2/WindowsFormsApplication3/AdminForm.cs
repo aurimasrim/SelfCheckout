@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,12 +24,12 @@ namespace WindowsFormsApplication3
         CameraScanForm csf;
         public CreditCardsForm ccf;
         public PurchasesForm pf;
+        public DiscountCardsForm dcf;
         public AdminForm(CheckoutForm f1, ClientForm f2)
         {
             InitializeComponent();
             this.f1 = f1;
             this.f2 = f2;
-            
 
             buttonClose.Click += delegate (object sender, EventArgs e)
             {
@@ -38,6 +39,31 @@ namespace WindowsFormsApplication3
 
             comboCategories.DataSource = Enum.GetNames(typeof(Category));
             comboCategories.SelectedIndex = 0;
+        }
+        public void SendAds(string category)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress("selfcheckoutads@gmail.com");
+            
+            mail.Subject = "Akcijos!";
+            mail.Body = "Akcija " + category + " ! Skubėkite pirkti!";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("selfcheckoutads", "selfcheckout");
+            SmtpServer.EnableSsl = true;
+            List<Nuolaidu_kortele> discountCardList;
+            using (var context = new ShopDBEntities1())
+            {
+                discountCardList = context.Nuolaidu_kortele.ToList();
+            }
+            foreach(Nuolaidu_kortele card in discountCardList)
+            {
+                if (card.Savininko_elpastas != null)
+                    mail.To.Add(card.Savininko_elpastas);
+            }
+            SmtpServer.Send(mail);
         }
         private void buttonReadFile_Click(object sender, EventArgs e)
         {
@@ -144,6 +170,7 @@ namespace WindowsFormsApplication3
                 productList.ForEach(x => x.Kaina = Math.Round(x.Kaina * mult, 2));
                 context.SaveChanges();
             }
+            SendAds(cat.ToString());
             GetData();
 
         }
@@ -227,6 +254,12 @@ namespace WindowsFormsApplication3
             {
                 e.Value = (Attributes)e.Value;
             }
+        }
+
+        private void buttonDiscountCards_Click(object sender, EventArgs e)
+        {
+            dcf = new DiscountCardsForm(f1, f2, this);
+            dcf.ShowDialog();
         }
     }
 }

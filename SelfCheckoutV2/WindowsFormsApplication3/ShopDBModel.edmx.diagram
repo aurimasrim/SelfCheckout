@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="27a18512943d4c5bbcfa282b789241bd" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopDBModel.Mokejimo_kortele" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDBModel.Nuolaidu_kortele" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDBModel.Pirkimas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDBModel.Pirkimo_prekes" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDBModel.Preke" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="ShopDBModel.FK__Pirkimas__Mokeji__76B698BF" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDBModel.FK__Pirkimas__Nuolai__75C27486" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDBModel.FK__Pirkimo_p__Pirki__7D63964E" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDBModel.FK__Pirkimo_p__Preke__7E57BA87" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -59,6 +59,7 @@
             this.buttonRefresh = new EnhancedGlassButton.GlassButton();
             this.buttonCreditCards = new EnhancedGlassButton.GlassButton();
             this.buttonPurchases = new EnhancedGlassButton.GlassButton();
+            this.buttonDiscountCards = new EnhancedGlassButton.GlassButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prekeDataSet)).BeginInit();
@@ -408,6 +409,20 @@
             this.buttonPurchases.Text = "Pirkimai";
             this.buttonPurchases.Click += new System.EventHandler(this.buttonPurchases_Click);
             // 
+            // buttonDiscountCards
+            // 
+            this.buttonDiscountCards.AnimateGlow = true;
+            this.buttonDiscountCards.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.buttonDiscountCards.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDiscountCards.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonDiscountCards.InnerBorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonDiscountCards.Location = new System.Drawing.Point(262, 417);
+            this.buttonDiscountCards.Name = "buttonDiscountCards";
+            this.buttonDiscountCards.Size = new System.Drawing.Size(102, 35);
+            this.buttonDiscountCards.TabIndex = 44;
+            this.buttonDiscountCards.Text = "Nuolaidų kortelės";
+            this.buttonDiscountCards.Click += new System.EventHandler(this.buttonDiscountCards_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,6 +431,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(731, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonDiscountCards);
             this.Controls.Add(this.buttonPurchases);
             this.Controls.Add(this.buttonCreditCards);
             this.Controls.Add(this.buttonRefresh);
@@ -483,5 +499,6 @@
         private PrekeDataSet prekeDataSet;
         private EnhancedGlassButton.GlassButton buttonCreditCards;
         private EnhancedGlassButton.GlassButton buttonPurchases;
+        private EnhancedGlassButton.GlassButton buttonDiscountCards;
     }
 }
